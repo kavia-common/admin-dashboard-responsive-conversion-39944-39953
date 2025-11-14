@@ -1,69 +1,244 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import OverviewPage from './pages/OverviewPage';
-import CustomersPage from './pages/CustomersPage';
-import ProductsPage from './pages/ProductsPage';
-import TransactionsPage from './pages/TransactionsPage';
-import ComponentsPage from './pages/ComponentsPage';
-import DocsPage from './pages/DocsPage';
-import NotFoundPage from './pages/NotFoundPage';
+import Skeleton from './components/Skeleton/Skeleton';
+import './App.css';
+
+// Lazy load all page components for better performance
+const OverviewPage = lazy(() => import('./pages/OverviewPage'));
+const CustomersPage = lazy(() => import('./pages/CustomersPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const TransactionsPage = lazy(() => import('./pages/TransactionsPage'));
+const ComponentsPage = lazy(() => import('./pages/ComponentsPage'));
+const DocsPage = lazy(() => import('./pages/DocsPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Legacy screen wrappers for backward compatibility
-import OverviewMobileScreen from './screens/OverviewMobileScreen';
-import TabletScreen from './screens/TabletScreen';
-import MobileScreen from './screens/MobileScreen';
-import ColorsScreen from './screens/ColorsScreen';
-import TypographyScreen from './screens/TypographyScreen';
-import SpacersScreen from './screens/SpacersScreen';
+const OverviewMobileScreen = lazy(() => import('./screens/OverviewMobileScreen'));
+const TabletScreen = lazy(() => import('./screens/TabletScreen'));
+const MobileScreen = lazy(() => import('./screens/MobileScreen'));
+const ColorsScreen = lazy(() => import('./screens/ColorsScreen'));
+const TypographyScreen = lazy(() => import('./screens/TypographyScreen'));
+const SpacersScreen = lazy(() => import('./screens/SpacersScreen'));
 
-import './App.css';
+// Loading fallback component
+const PageLoader = () => (
+  <div style={{ padding: '24px' }}>
+    <Skeleton variant="text" width="200px" height={32} />
+    <div style={{ marginTop: '24px' }}>
+      <Skeleton variant="rectangular" width="100%" height={400} />
+    </div>
+  </div>
+);
 
 // PUBLIC_INTERFACE
 /**
  * Main App component with routing and layout
- * Provides dashboard shell with sidebar navigation and page routing
+ * Provides dashboard shell with sidebar navigation and lazy-loaded page routing
  */
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Main dashboard routes with layout */}
-        <Route path="/" element={<Layout><Navigate to="/overview" replace /></Layout>} />
-        <Route path="/overview" element={<Layout><OverviewPage /></Layout>} />
-        <Route path="/customers" element={<Layout><CustomersPage /></Layout>} />
-        <Route path="/products" element={<Layout><ProductsPage /></Layout>} />
-        <Route path="/transactions" element={<Layout><TransactionsPage /></Layout>} />
+        {/* Main dashboard routes with layout and Suspense */}
+        <Route path="/" element={
+          <Layout>
+            <Navigate to="/overview" replace />
+          </Layout>
+        } />
+        
+        <Route path="/overview" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <OverviewPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/customers" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <CustomersPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/products" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ProductsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/transactions" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <TransactionsPage />
+            </Suspense>
+          </Layout>
+        } />
         
         {/* Components routes */}
-        <Route path="/components" element={<Layout><Navigate to="/components/buttons" replace /></Layout>} />
-        <Route path="/components/buttons" element={<Layout><ComponentsPage /></Layout>} />
-        <Route path="/components/badges" element={<Layout><ComponentsPage /></Layout>} />
-        <Route path="/components/footers" element={<Layout><ComponentsPage /></Layout>} />
-        <Route path="/components/icons" element={<Layout><ComponentsPage /></Layout>} />
+        <Route path="/components" element={
+          <Layout>
+            <Navigate to="/components/buttons" replace />
+          </Layout>
+        } />
+        
+        <Route path="/components/buttons" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ComponentsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/components/badges" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ComponentsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/components/footers" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ComponentsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/components/icons" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ComponentsPage />
+            </Suspense>
+          </Layout>
+        } />
         
         {/* Documentation routes */}
-        <Route path="/docs" element={<Layout><Navigate to="/docs/introduction" replace /></Layout>} />
-        <Route path="/docs/introduction" element={<Layout><DocsPage /></Layout>} />
-        <Route path="/docs/support" element={<Layout><DocsPage /></Layout>} />
-        <Route path="/support" element={<Layout><DocsPage /></Layout>} />
-        <Route path="/docs/license" element={<Layout><DocsPage /></Layout>} />
-        <Route path="/license" element={<Layout><DocsPage /></Layout>} />
+        <Route path="/docs" element={
+          <Layout>
+            <Navigate to="/docs/introduction" replace />
+          </Layout>
+        } />
+        
+        <Route path="/docs/introduction" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <DocsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/docs/support" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <DocsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/support" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <DocsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/docs/license" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <DocsPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/license" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <DocsPage />
+            </Suspense>
+          </Layout>
+        } />
         
         {/* Error routes */}
-        <Route path="/errors/404" element={<Layout><NotFoundPage /></Layout>} />
-        <Route path="/errors/404-mobile" element={<Layout><NotFoundPage /></Layout>} />
+        <Route path="/errors/404" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <NotFoundPage />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/errors/404-mobile" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <NotFoundPage />
+            </Suspense>
+          </Layout>
+        } />
         
         {/* Legacy/reference routes (kept for backward compatibility) */}
-        <Route path="/overview-mobile" element={<Layout><OverviewMobileScreen /></Layout>} />
-        <Route path="/mobile" element={<Layout><MobileScreen /></Layout>} />
-        <Route path="/tablet" element={<Layout><TabletScreen /></Layout>} />
-        <Route path="/colors" element={<Layout><ColorsScreen /></Layout>} />
-        <Route path="/typography" element={<Layout><TypographyScreen /></Layout>} />
-        <Route path="/spacers" element={<Layout><SpacersScreen /></Layout>} />
+        <Route path="/overview-mobile" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <OverviewMobileScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/mobile" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <MobileScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/tablet" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <TabletScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/colors" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <ColorsScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/typography" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <TypographyScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/spacers" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <SpacersScreen />
+            </Suspense>
+          </Layout>
+        } />
         
         {/* Catch-all 404 route */}
-        <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
+        <Route path="*" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <NotFoundPage />
+            </Suspense>
+          </Layout>
+        } />
       </Routes>
     </Router>
   );
