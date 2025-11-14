@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import IframeScreen from './components/IframeScreen';
+import AllScreens from './pages/AllScreens';
 import './App.css';
 
 // PUBLIC_INTERFACE
@@ -9,15 +10,23 @@ import './App.css';
  * Main App component with routing and layout
  * All routes now point to IframeScreen instances loading refined asset HTML files
  * Sidebar/Topbar provided by Layout, content from /assets/*.html files only
+ * Includes All Screens gallery page and catch-all redirect
  */
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Root redirect to overview */}
+        {/* Root redirect to all screens */}
         <Route path="/" element={
           <Layout>
-            <Navigate to="/overview" replace />
+            <Navigate to="/all-screens" replace />
+          </Layout>
+        } />
+        
+        {/* All Screens gallery page */}
+        <Route path="/all-screens" element={
+          <Layout>
+            <AllScreens />
           </Layout>
         } />
         
@@ -189,10 +198,10 @@ function App() {
           </Layout>
         } />
         
-        {/* Catch-all 404 route */}
+        {/* Catch-all route - redirect to all screens */}
         <Route path="*" element={
           <Layout>
-            <IframeScreen src="/assets/404-3-4143.html" title="404 Not Found" />
+            <Navigate to="/all-screens" replace />
           </Layout>
         } />
       </Routes>

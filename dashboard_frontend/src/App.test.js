@@ -7,17 +7,18 @@ describe('App Component', () => {
     
     // Wait for lazy-loaded components
     await waitFor(() => {
-      // Should redirect to /overview and show overview content
-      expect(screen.getByText(/overview/i)).toBeInTheDocument();
-    });
+      // Should redirect to /all-screens and show All Screens content
+      expect(screen.getByText(/All Screens/i)).toBeInTheDocument();
+    }, { timeout: 3000 });
   });
 
   test('handles route navigation', async () => {
     const { container } = render(<App />);
     
     await waitFor(() => {
-      // Check that router is working
-      expect(container.querySelector('.page')).toBeInTheDocument();
-    });
+      // Check that the AllScreens component is rendered
+      // Look for the subtitle text that's unique to AllScreens
+      expect(screen.getByText(/Browse all available asset screens/i)).toBeInTheDocument();
+    }, { timeout: 3000 });
   });
 });

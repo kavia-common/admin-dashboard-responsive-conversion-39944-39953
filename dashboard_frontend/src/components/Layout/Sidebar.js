@@ -21,6 +21,7 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
   const lastFocusableRef = useRef(null);
 
   const navItems = [
+    { path: '/all-screens', label: 'All Screens', icon: '🏠' },
     { path: '/overview', label: 'Overview', icon: '📊' },
     { 
       path: '/docs', 
