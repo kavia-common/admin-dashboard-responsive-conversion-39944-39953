@@ -4,20 +4,29 @@ import styles from './Topbar.module.css';
 // PUBLIC_INTERFACE
 /**
  * Topbar component with search, notifications, and user avatar
+ * Enhanced with proper hamburger menu button and ARIA attributes
  * 
  * @param {Object} props - Component props
  * @param {function} props.onMobileMenuToggle - Mobile menu toggle handler
+ * @param {boolean} props.isDrawerOpen - Whether the navigation drawer is open
  */
-function Topbar({ onMobileMenuToggle }) {
+function Topbar({ onMobileMenuToggle, isDrawerOpen = false }) {
   return (
     <header className={styles.topbar} role="banner">
       <div className={styles.leftSection}>
         <button 
           className={styles.mobileMenuBtn}
           onClick={onMobileMenuToggle}
-          aria-label="Toggle mobile menu"
+          aria-label={isDrawerOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isDrawerOpen}
+          aria-controls="navigation-drawer"
         >
-          ☰
+          {/* Hamburger icon - animated to X when open */}
+          <span className={`${styles.hamburgerIcon} ${isDrawerOpen ? styles.open : ''}`}>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+          </span>
         </button>
         <div className={styles.search}>
           <input 

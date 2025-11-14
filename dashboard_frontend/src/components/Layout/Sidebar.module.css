@@ -52,6 +52,33 @@
   outline-offset: 2px;
 }
 
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #6b7280;
+  font-size: 24px;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
 .nav {
   flex: 1;
   padding: 16px 8px;
@@ -151,16 +178,17 @@
   padding: 10px 8px;
 }
 
-/* Mobile styles */
-@media (max-width: 768px) {
+/* Hide sidebar on tablet and mobile by default, show as drawer when open */
+@media (max-width: 1023px) {
   .sidebar {
     position: fixed;
     left: -100%;
     top: 0;
     bottom: 0;
-    width: 260px;
+    width: 280px;
+    max-width: 85vw;
     z-index: 200;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
     transition: left 0.3s ease;
   }
 
@@ -169,6 +197,28 @@
   }
 
   .toggleBtn {
+    display: none;
+  }
+
+  .closeBtn {
+    display: flex;
+  }
+
+  /* Always show full navigation (not collapsed) in mobile drawer */
+  .sidebar.collapsed .navLabel,
+  .sidebar.collapsed .subNav {
+    display: block;
+  }
+
+  .sidebar.collapsed .navLink {
+    justify-content: flex-start;
+    padding: 10px 12px;
+  }
+}
+
+/* Desktop: show sidebar normally */
+@media (min-width: 1024px) {
+  .closeBtn {
     display: none;
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 
@@ -6,7 +6,7 @@ import styles from './Sidebar.module.css';
 /**
  * Sidebar component with collapsible navigation
  * Provides primary navigation for the dashboard with active route highlighting
- * Updated to include all refined asset-based screens
+ * Enhanced with focus trap, Esc key handling, and full accessibility
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.collapsed - Whether the sidebar is collapsed
@@ -15,6 +15,10 @@ import styles from './Sidebar.module.css';
  * @param {function} props.onMobileClose - Mobile menu close handler
  */
 function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileClose }) {
+  const sidebarRef = useRef(null);
+  const firstFocusableRef = useRef(null);
+  const lastFocusableRef = useRef(null);
+
   const navItems = [
     { path: '/overview', label: 'Overview', icon: '📊' },
     { 
@@ -69,25 +73,104 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
     }
   };
 
+  // Focus trap and Esc key handling
+  useEffect(() => {
+    if (!isMobileOpen) return;
+
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+
+    // Get all focusable elements
+    const focusableElements = sidebar.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusableElements.length === 0) return;
+
+    firstFocusableRef.current = focusableElements[0];
+    lastFocusableRef.current = focusableElements[focusableElements.length - 1];
+
+    // Focus first element when drawer opens
+    firstFocusableRef.current?.focus();
+
+    // Handle Tab key for focus trap
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onMobileClose();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstFocusableRef.current) {
+            e.preventDefault();
+            lastFocusableRef.current?.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastFocusableRef.current) {
+            e.preventDefault();
+            firstFocusableRef.current?.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileOpen, onMobileClose]);
+
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileOpen]);
+
   return (
     <aside 
+      ref={sidebarRef}
+      id="navigation-drawer"
       className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''} ${isMobileOpen ? styles.mobileOpen : ''}`}
-      role="navigation"
+      role={isMobileOpen ? "dialog" : "navigation"}
       aria-label="Main navigation"
+      aria-modal={isMobileOpen ? "true" : undefined}
     >
       <div className={styles.sidebarHeader}>
         <div className={styles.logo}>
           {!collapsed && <span className={styles.logoText}>Dashboard</span>}
           {collapsed && <span className={styles.logoIcon}>D</span>}
         </div>
-        <button 
-          className={styles.toggleBtn}
-          onClick={onToggle}
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          aria-expanded={!collapsed}
-        >
-          {collapsed ? '→' : '←'}
-        </button>
+        {!isMobileOpen && (
+          <button 
+            className={styles.toggleBtn}
+            onClick={onToggle}
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            aria-expanded={!collapsed}
+          >
+            {collapsed ? '→' : '←'}
+          </button>
+        )}
+        {isMobileOpen && (
+          <button 
+            className={styles.closeBtn}
+            onClick={onMobileClose}
+            aria-label="Close navigation menu"
+          >
+            ✕
+          </button>
+        )}
       </div>
 
       <nav className={styles.nav}>
