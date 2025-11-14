@@ -7,6 +7,7 @@ import styles from './Sidebar.module.css';
  * Sidebar component with collapsible navigation
  * Provides primary navigation for the dashboard with active route highlighting
  * Enhanced with focus trap, Esc key handling, and full accessibility
+ * Updated to include all available screens
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.collapsed - Whether the sidebar is collapsed
@@ -27,6 +28,7 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
       icon: '📄',
       children: [
         { path: '/docs/introduction', label: 'Introduction' },
+        { path: '/docs/how-to-use', label: 'How to Use' },
         { path: '/support', label: 'Support' },
         { path: '/license', label: 'License' }
       ]
@@ -42,11 +44,13 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
         { path: '/heroicons', label: 'Heroicons' },
         { path: '/colors', label: 'Colors' },
         { path: '/typography', label: 'Typography' },
-        { path: '/spacers', label: 'Spacers' }
+        { path: '/spacers', label: 'Spacers' },
+        { path: '/fonts', label: 'Fonts' }
       ]
     },
     { path: '/sidebars-topbars', label: 'Navigation', icon: '🧭' },
     { path: '/illustrations', label: 'Illustrations', icon: '🎨' },
+    { path: '/cover', label: 'Cover', icon: '📖' },
     { 
       path: '/errors', 
       label: 'Error Pages', 
@@ -62,7 +66,8 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
       icon: '📱',
       children: [
         { path: '/tablet', label: 'Tablet' },
-        { path: '/mobile', label: 'Mobile' }
+        { path: '/mobile', label: 'Mobile' },
+        { path: '/overview-mobile', label: 'Overview Mobile' }
       ]
     }
   ];
