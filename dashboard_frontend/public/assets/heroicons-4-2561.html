@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Lock viewport scaling for pixel checking while remaining responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heroicons — Solid and Outline (4:2561)</title>
+  <!-- Performance: preload a subset of commonly visible icons (if any explicit paths provided) -->
+  <link rel="preload" as="image" href="/assets/figmaimages/figma_image_4_2965_541_1160.svg">
+  <link rel="preload" as="image" href="/assets/figmaimages/figma_image_4_2872_541_954.svg">
+  <link rel="stylesheet" href="./heroicons-4-2561.css" />
+</head>
+<body>
+  <main id="heroicons-screen" class="page" role="main" aria-labelledby="page-title">
+    <h1 id="page-title" class="visually-hidden">Heroicons library with Solid and Outline sets</h1>
+
+    <!-- Controls: simple text filter for quick icon lookup -->
+    <form class="toolbar" role="search" aria-label="Filter icons">
+      <label for="icon-filter" class="toolbar__label">Filter icons</label>
+      <input id="icon-filter" class="toolbar__input" type="search" placeholder="Type to filter (e.g., user, lock)" aria-describedby="filter-hint" autocomplete="off" />
+      <div id="filter-hint" class="visually-hidden">Results update as you type. Press Escape to clear.</div>
+    </form>
+
+    <div class="columns" role="region" aria-label="Heroicons two-column layout">
+      <section class="icon-section" aria-labelledby="heading-solid">
+        <h2 id="heading-solid" class="heading">Solid</h2>
+        <div id="grid-solid" class="icon-grid" role="grid" aria-label="Solid icon grid"></div>
+      </section>
+
+      <section class="icon-section" aria-labelledby="heading-outline">
+        <h2 id="heading-outline" class="heading">Outline</h2>
+        <div id="grid-outline" class="icon-grid" role="grid" aria-label="Outline icon grid"></div>
+      </section>
+    </div>
+  </main>
+  <script src="./heroicons-4-2561.js"></script>
+</body>
+</html>

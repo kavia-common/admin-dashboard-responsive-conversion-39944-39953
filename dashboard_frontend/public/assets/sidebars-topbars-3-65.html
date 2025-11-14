@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sidebars & Topbars - 3:65</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./sidebars-topbars-3-65.css">
+</head>
+<body>
+  <div class="app-grid">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-scroll">
+        <nav class="sidebar-section">
+          <!-- Overview (active) -->
+          <a class="nav-item active" href="#">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_0.svg" alt="Overview icon">
+            <span class="nav-label">Overview</span>
+          </a>
+
+          <!-- Pages (collapsed) -->
+          <div class="nav-item with-chevron" role="button" aria-expanded="false" data-toggle="pages">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_5.svg" alt="Pages icon">
+            <span class="nav-label">Pages</span>
+            <svg class="chevron chevron-down" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M6 8l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Sales (expanded) -->
+          <div class="submenu-group" data-accordion="sales">
+            <div class="nav-item with-chevron expanded" role="button" aria-expanded="true" data-toggle="sales">
+              <img class="nav-icon" src="/assets/figmaimages/figma_image_6_9.svg" alt="Sales icon">
+              <span class="nav-label">Sales</span>
+              <img class="chevron chevron-up" src="/assets/figmaimages/figma_image_6_57.svg" alt="" aria-hidden="true">
+            </div>
+            <div class="submenu">
+              <a class="submenu-item" href="#">Product List</a>
+              <a class="submenu-item" href="#">Billing</a>
+              <a class="submenu-item" href="#">Invoice</a>
+            </div>
+          </div>
+
+          <!-- Messages with badge -->
+          <div class="nav-item badge-item">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_17.svg" alt="Messages icon">
+            <span class="nav-label">Messages</span>
+            <span class="badge">1</span>
+          </div>
+
+          <!-- Authentication (collapsed) -->
+          <div class="nav-item with-chevron" role="button" aria-expanded="false" data-toggle="auth">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_24.svg" alt="Authentication icon">
+            <span class="nav-label">Authentication</span>
+            <svg class="chevron chevron-down" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M6 8l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <nav class="sidebar-section">
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_30.svg" alt="Docs icon">
+            <span class="nav-label">Docs</span>
+          </a>
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_37.svg" alt="Components icon">
+            <span class="nav-label">Components</span>
+          </a>
+          <a class="nav-item" href="#">
+            <img class="nav-icon" src="/assets/figmaimages/figma_image_6_43.svg" alt="Help icon">
+            <span class="nav-label">Help</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button class="icon-button" aria-label="Adjustments">
+            <img src="/assets/figmaimages/figma_image_6_86.svg" alt="" aria-hidden="true">
+          </button>
+          <button class="icon-button" aria-label="Language">
+            <img src="/assets/figmaimages/figma_image_6_70.svg" alt="" aria-hidden="true">
+          </button>
+          <button class="icon-button" aria-label="Settings">
+            <img src="/assets/figmaimages/figma_image_6_83.svg" alt="" aria-hidden="true">
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Vertical divider to match 1px separator at x:-789 -->
+    <div class="sidebar-vertical-divider" aria-hidden="true"></div>
+
+    <!-- Main area -->
+    <main class="main">
+      <!-- Top Navbar with Search -->
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-search">
+            <div class="brand">
+              <!-- Placeholder brand block with exact size (35x33) -->
+              <div class="brand-mark" aria-label="Brand"></div>
+            </div>
+            <label class="search-field">
+              <img class="search-icon" src="/assets/figmaimages/figma_image_5_1022.svg" alt="">
+              <input type="text" placeholder="Search" aria-label="Search">
+            </label>
+          </div>
+
+          <div class="topbar-right">
+            <button class="notif" aria-label="Notifications">
+              <img src="/assets/figmaimages/figma_image_4_3983.svg" alt="" aria-hidden="true">
+            </button>
+            <img class="avatar" src="/assets/figmaimages/figma_image_3_4374.png" alt="User avatar">
+          </div>
+        </div>
+        <div class="topbar-divider" aria-hidden="true"></div>
+      </header>
+
+      <!-- Content placeholders to reflect screenshot rhythm -->
+      <section class="content">
+        <div class="content-bar large">
+          <div class="ghost-left"></div>
+          <div class="ghost-right"></div>
+        </div>
+        <div class="content-bar medium">
+          <div class="ghost-left"></div>
+          <div class="ghost-right"></div>
+        </div>
+        <div class="content-bar small">
+          <div class="ghost-left short"></div>
+          <div class="ghost-right"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./sidebars-topbars-3-65.js"></script>
+</body>
+</html>

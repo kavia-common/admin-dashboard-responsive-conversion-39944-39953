@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1600, initial-scale=1.0">
+  <title>Overview - Admin Dashboard</title>
+  <link rel="stylesheet" href="overview-3-3111.css">
+</head>
+<body>
+  <div class="page">
+    <!-- Navbar -->
+    <header class="navbar" role="banner">
+      <div class="navbar__left">
+        <div class="logo" aria-label="Company Logo">
+          <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.228 0L0 18.584L13.228 0Z" fill="#10B981"/>
+            <path d="M9.733 0.409L0 18.175L9.733 0.409Z" fill="#10B981"/>
+            <path d="M28.355 0L0 33.056L28.355 0Z" fill="#10B981"/>
+            <path d="M22.704 5.714L0 33.056L22.704 5.714Z" fill="#10B981"/>
+          </svg>
+        </div>
+        <div class="search" role="search">
+          <img src="figmaimages/figma_image_6_309_5_1022_4_2958_541_1146.svg" alt="" width="20" height="20" class="search__icon">
+          <input type="text" placeholder="Search" aria-label="Search dashboard">
+        </div>
+      </div>
+      <div class="navbar__right">
+        <button class="btn-icon" aria-label="Notifications">
+          <img src="figmaimages/figma_image_6_309_4_3983.svg" alt="" width="24" height="24">
+        </button>
+        <img src="figmaimages/figma_image_6_309_3_4374.png" alt="User Avatar" class="avatar" width="32" height="32">
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" role="navigation" aria-label="Main Navigation">
+      <nav>
+        <div class="nav-item active" role="menuitem" aria-current="page">
+          <img src="figmaimages/figma_image_6_214.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Overview</span>
+        </div>
+        
+        <div class="nav-item has-children" role="menuitem" aria-expanded="false">
+          <img src="figmaimages/figma_image_6_220.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Pages</span>
+          <svg class="chevron" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M8 9L12 13L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="nav-item has-children expanded" role="menuitem" aria-expanded="true">
+          <img src="figmaimages/figma_image_6_227.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Sales</span>
+          <svg class="chevron chevron-up" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M8 13L12 9L16 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="submenu" role="menu">
+          <div class="nav-subitem" role="menuitem">Product List</div>
+          <div class="nav-subitem" role="menuitem">Billing</div>
+          <div class="nav-subitem" role="menuitem">Invoice</div>
+        </div>
+
+        <div class="nav-item" role="menuitem">
+          <img src="figmaimages/figma_image_6_239.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Messages</span>
+          <span class="badge badge--red" role="status" aria-label="1 unread message">1</span>
+        </div>
+
+        <div class="nav-item has-children" role="menuitem" aria-expanded="false">
+          <img src="figmaimages/figma_image_6_245.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Authentication</span>
+          <svg class="chevron" width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M8 9L12 13L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="nav-item" role="menuitem">
+          <img src="figmaimages/figma_image_6_253.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Docs</span>
+        </div>
+
+        <div class="nav-item" role="menuitem">
+          <img src="figmaimages/figma_image_6_259.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Components</span>
+        </div>
+
+        <div class="nav-item" role="menuitem">
+          <img src="figmaimages/figma_image_6_265.svg" alt="" width="24" height="24" class="icon">
+          <span class="label">Help</span>
+        </div>
+      </nav>
+
+      <div class="sidebar__bottom">
+        <button class="icon-btn" aria-label="Adjustments">
+          <img src="figmaimages/figma_image_6_270.svg" alt="" width="24" height="24">
+        </button>
+        <button class="icon-btn" aria-label="Language">
+          <img src="figmaimages/figma_image_6_271.svg" alt="" width="24" height="24">
+        </button>
+        <button class="icon-btn" aria-label="Settings">
+          <img src="figmaimages/figma_image_6_272.svg" alt="" width="24" height="24">
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+      <!-- Earnings Chart Card -->
+      <section class="card card--chart">
+        <div class="card__header">
+          <div class="header-left">
+            <h2 class="title">Sales</h2>
+            <img src="figmaimages/figma_image_3_3118.svg" alt="Information" width="24" height="24" class="info-icon">
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="chart">
+            <div class="chart__y-axis">
+              <div class="y-label">240K</div>
+              <div class="y-label">200K</div>
+              <div class="y-label">160K</div>
+              <div class="y-label">120K</div>
+              <div class="y-label">80K</div>
+              <div class="y-label">40K</div>
+              <div class="y-label">0K</div>
+            </div>
+            <div class="chart__plot">
+              <div class="chart__grid">
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+              </div>
+              <svg class="chart__line" viewBox="0 0 1160 383" preserveAspectRatio="none">
+                <path d="M0,280 L165,250 L330,270 L495,180 L660,200 L825,190 L990,210 L1160,205" 
+                      fill="none" stroke="var(--chart-line)" stroke-width="3"/>
+              </svg>
+              <div class="chart__tooltip" style="left: 392px; top: 118px;">
+                <div class="tooltip__content">
+                  <div class="tooltip__title">2 Apr, 2021</div>
+                  <div class="tooltip__row">
+                    <span class="tooltip__dot"></span>
+                    <span class="tooltip__text">Sales: $79k</span>
+                  </div>
+                </div>
+              </div>
+              <div class="chart__dot" style="left: 415px; top: 239px;"></div>
+              <div class="chart__vertical-line" style="left: 415px;"></div>
+            </div>
+            <div class="chart__x-axis">
+              <div class="x-label">01 Apr</div>
+              <div class="x-label">02 Apr</div>
+              <div class="x-label">03 Apr</div>
+              <div class="x-label">04 Apr</div>
+              <div class="x-label">05 Apr</div>
+              <div class="x-label">06 Apr</div>
+              <div class="x-label">07 Apr</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Three Column Section -->
+      <div class="split-3">
+        <!-- Latest Customers Card -->
+        <section class="card card--customers">
+          <div class="card__header">
+            <h2 class="title">Latest Customers</h2>
+          </div>
+          <div class="card__body">
+            <div class="list">
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4194.png" alt="Neil Sims" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Neil Sims</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$367</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4202.png" alt="Bonnie Green" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Bonnie Green</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$67</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4210.png" alt="Micheal Gough" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Micheal Gough</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$3467</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4218.png" alt="Thomas Lean" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Thomas Lean</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$2367</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4226.png" alt="Lana Byrd" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Lana Byrd</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$367</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="customer-row">
+                <div class="user">
+                  <img src="figmaimages/figma_image_3_4234.png" alt="Karen Nelson" class="avatar" width="32" height="32">
+                  <div class="meta">
+                    <div class="name">Karen Nelson</div>
+                    <div class="email">email@example.com</div>
+                  </div>
+                </div>
+                <div class="amount">$1367</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top Products Card -->
+        <section class="card card--top-products">
+          <div class="card__header">
+            <h2 class="title">Top products</h2>
+          </div>
+          <div class="card__body">
+            <div class="list">
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">Restaurant Booking App</div>
+                  <div class="subtitle">React & Bootstrap Framework</div>
+                </div>
+                <div class="sales">70 sales</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">UI Kit</div>
+                  <div class="subtitle">React & Bootstrap Framework</div>
+                </div>
+                <div class="sales">54 sales</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">Design System Pro</div>
+                  <div class="subtitle">Bootstrap Framework</div>
+                </div>
+                <div class="sales">47 sales</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">Dashboard</div>
+                  <div class="subtitle">Tailwind, React</div>
+                </div>
+                <div class="sales">43 sales</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">Glassmorphism UI</div>
+                  <div class="subtitle">Vue Js, Tailwind</div>
+                </div>
+                <div class="sales">38 sales</div>
+              </div>
+              <div class="divider"></div>
+              
+              <div class="product-row">
+                <div class="product-info">
+                  <div class="name">Multipurpose Template</div>
+                  <div class="subtitle">React & Bootstrap Framework</div>
+                </div>
+                <div class="sales">22 sales</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Transactions Table Card -->
+      <section class="card card--transactions">
+        <div class="card__header card__header--table">
+          <div>
+            <h2 class="title">Transactions</h2>
+            <p class="subtitle">This is a list of latest transactions.</p>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="table">
+            <div class="thead">
+              <div class="th">TRANSACTION</div>
+              <div class="th">DATE & TIME</div>
+              <div class="th">AMOUNT</div>
+              <div class="th">STATUS</div>
+            </div>
+            <div class="tbody">
+              <div class="tr">
+                <div class="td transaction">Payment from Bonnie Green</div>
+                <div class="td datetime">Apr 23, 2021</div>
+                <div class="td amount">$2300</div>
+                <div class="td status">
+                  <span class="badge badge--green">Completed</span>
+                </div>
+              </div>
+              
+              <div class="tr tr--alt">
+                <div class="td transaction">Payment refund to #00910</div>
+                <div class="td datetime">Apr 23, 2021</div>
+                <div class="td amount">-$670</div>
+                <div class="td status">
+                  <span class="badge badge--green">Completed</span>
+                </div>
+              </div>
+              
+              <div class="tr">
+                <div class="td transaction">Payment failed from #087651</div>
+                <div class="td datetime">Apr 18, 2021</div>
+                <div class="td amount">$234</div>
+                <div class="td status">
+                  <span class="badge badge--red">Cancelled</span>
+                </div>
+              </div>
+              
+              <div class="tr tr--alt">
+                <div class="td transaction">Payment from Bonnie Green</div>
+                <div class="td datetime">Apr 15, 2021</div>
+                <div class="td amount">$5000</div>
+                <div class="td status">
+                  <span class="badge badge--blue">In progress</span>
+                </div>
+              </div>
+              
+              <div class="tr">
+                <div class="td transaction">Payment from Jese Leos</div>
+                <div class="td datetime">Apr 15, 2021</div>
+                <div class="td amount">$2300</div>
+                <div class="td status">
+                  <span class="badge badge--blue">In progress</span>
+                </div>
+              </div>
+              
+              <div class="tr tr--alt">
+                <div class="td transaction">Payment from THEMSBERG LLC</div>
+                <div class="td datetime">Apr 11, 2021</div>
+                <div class="td amount">$280</div>
+                <div class="td status">
+                  <span class="badge badge--green">Completed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer__content">
+        <div class="copyright">© 2021 Themesberg, LLC. All rights reserved.</div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook">
+            <img src="figmaimages/figma_image_6_385_6_374.svg" alt="" width="24" height="24">
+          </a>
+          <a href="#" aria-label="Twitter">
+            <img src="figmaimages/figma_image_6_385_6_377.svg" alt="" width="24" height="24">
+          </a>
+          <a href="#" aria-label="GitHub">
+            <img src="figmaimages/figma_image_6_385_6_380.svg" alt="" width="24" height="24">
+          </a>
+          <a href="#" aria-label="Dribbble">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="overview-3-3111.js"></script>
+</body>
+</html>

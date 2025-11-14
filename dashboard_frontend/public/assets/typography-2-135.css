@@ -1,0 +1,188 @@
+:root{
+  --bg-canvas: #ffffff;   /* color_ffffff from YAML */
+  --primary-text: #111827; /* heading/body dark */
+  --muted-text: #6b7280;   /* secondary text for code-ish labels */
+  --blue: #2563eb;         /* blue labels (style_10 approximation) */
+
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: "Helvetica Neue", Arial, sans-serif;
+
+  /* Type sizes inferred from group heights in YAML */
+  --fs-xs: 12px;
+  --lh-xs: 18px;
+
+  --fs-sm: 14px;
+  --lh-sm: 20px;
+
+  --fs-base: 16px;
+  --lh-base: 24px;
+
+  --fs-xl: 20px;
+  --lh-xl: 30px;
+
+  --fs-3xl: 30px;
+  --lh-3xl: 45px;
+
+  --fs-7xl: 60px;
+  --lh-7xl: 94px;
+
+  /* Brand specimen display (Themesberg word) aims to produce ~201.2px height */
+  --brand-size: 128px;
+  --brand-line: 201.2px;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  color: var(--primary-text);
+  font-family: var(--sans);
+}
+
+/* Root canvas matching the Figma frame exactly */
+#screen{
+  position: relative;
+  width: 2940px;
+  height: 2141px;
+  background: var(--bg-canvas);
+  overflow: hidden;
+}
+
+/* Faint background screenshot overlay for pixel matching (toggle via JS) */
+#bg-ref{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2940px;
+  height: 2141px;
+  object-fit: cover;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Font-weight section (2:136) */
+#font-weight{
+  position: absolute;
+  left: 0px;   /* root child x:-788 => set as origin on canvas */
+  top: 0px;    /* y:-1904 => top of canvas */
+  width: 1748px;
+  height: 1206px;
+}
+
+/* Each row container with exact group width/height from YAML (1668 x 201.2) */
+.fw-row{
+  position: absolute;
+  left: 40px;            /* groups at x:-748 inside section => 40px inset */
+  width: 1668px;
+  height: 201.2px;
+}
+
+/* Vertical placement per YAML stacking */
+.fw-row[data-row="light"]{ top: 40px; }
+.fw-row[data-row="normal"]{ top: 271.2px; }
+.fw-row[data-row="medium"]{ top: 502.4px; }
+.fw-row[data-row="semibold"]{ top: 733.6px; }
+.fw-row[data-row="bold"]{ top: 964.8px; }
+
+/* Brand word specimens (Themesberg) in different weights */
+.brand{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0;
+  font-size: var(--brand-size);
+  line-height: var(--brand-line);
+  letter-spacing: 0;
+  color: var(--primary-text);
+}
+.brand-light{ font-weight: 300; width: 556px; }
+.brand-normal{ font-weight: 400; width: 563px; }
+.brand-medium{ font-weight: 500; width: 572px; }
+.brand-semibold{ font-weight: 600; width: 580px; }
+.brand-bold{ font-weight: 700; width: 590px; }
+
+/* Blue label (.label) and code (.code) positions inside each fw-row */
+.label{
+  position: absolute;
+  top: 49.3%;
+  transform: translateY(-50%);
+  left: 827px;          /* aligns to YAML label x relative to group */
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.blue{ color: var(--blue); }
+
+/* Monospace 'code' style for weight CSS */
+.code{
+  position: absolute;
+  top: 49.3%;
+  transform: translateY(-50%);
+  left: 1260px;         /* aligns approximate YAML x for the css text */
+  font-family: var(--mono);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--muted-text);
+  white-space: pre;
+}
+
+/* Font-size section (2:180) */
+#font-size{
+  position: absolute;
+  left: 0px;
+  top: 1304px;        /* maps relative to frame (y:-600) => placed below first section */
+  width: 2940px;
+  height: 837px;
+}
+
+/* Size rows positioned using exact group dimensions from YAML */
+.size-row{
+  position: absolute;
+  left: 40px;         /* group x:-748 => 40px inset inside section */
+}
+
+.size-row[data-size="xs"]{ top: 40px; height: 48px; width: 477px; }
+.size-row[data-size="sm"]{ top: 120px; height: 50px; width: 549px; }
+.size-row[data-size="base"]{ top: 202px; height: 54px; width: 510px; }
+.size-row[data-size="xl"]{ top: 288px; height: 60px; width: 630px; }
+.size-row[data-size="3xl"]{ top: 380px; height: 75px; width: 733px; }
+.size-row[data-size="7xl"]{ top: 487px; height: 124px; width: 1583px; }
+
+/* Left class label inside size groups */
+.size-row .class{
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+/* Specimens inside size groups positioned at exact y offsets */
+.specimen{
+  position: absolute;
+  left: 0;
+  margin: 0;
+  color: var(--primary-text);
+}
+
+/* Map to the text box heights from YAML through line-heights and sizes */
+.specimen.xs{ top: 30px; font-size: var(--fs-xs); line-height: var(--lh-xs); }
+.specimen.sm{ top: 30px; font-size: var(--fs-sm); line-height: var(--lh-sm); }
+.specimen.base{ top: 30px; font-size: var(--fs-base); line-height: var(--lh-base); }
+.specimen.xl{ top: 30px; font-size: var(--fs-xl); line-height: var(--lh-xl); }
+.specimen.x3l{ top: 30px; font-size: var(--fs-3xl); line-height: var(--lh-3xl); }
+.specimen.x7l{ top: 30px; font-size: var(--fs-7xl); line-height: var(--lh-7xl); }
+
+/* Optional visual guide line for left edge alignment */
+#screen::before{
+  content: "";
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(37,99,235,0.08);
+}

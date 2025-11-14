@@ -1,0 +1,226 @@
+:root{
+  --bg-canvas:#F3F4F6; /* color_f3f4f6 */
+  --sidebar-bg:#FFFFFF;
+  --text:#111827;
+  --text-secondary:#6B7280;
+  --muted:#9CA3AF;
+  --border:#E5E7EB;
+  --icon:#6B7280;
+  --accent:#3B82F6;
+  --hover:#F9FAFB;
+  --badge-red:#EF4444;
+  --badge-red-text:#FFFFFF;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg-canvas);
+  color:var(--text);
+  font-family:Helvetica Neue, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Page grid: [sidebar 250] [1px divider] [main auto] */
+.app-grid{
+  display:grid;
+  grid-template-columns: 250px 1px 1fr;
+  grid-template-rows: 100%;
+  min-height:100vh;
+}
+
+/* Sidebar */
+.sidebar{
+  background:var(--sidebar-bg);
+  position:relative;
+}
+.sidebar-scroll{
+  position:relative;
+  height:100vh;
+  overflow:auto;
+  padding-top:18px; /* approximate top internal spacing */
+}
+.sidebar-section{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding:0 12px;
+}
+
+.nav-item{
+  height:24px; /* text/row height */
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--text-secondary);
+  text-decoration:none;
+  padding:4px 8px; /* gives ~32px container height where needed */
+  border-radius:8px;
+  cursor:pointer;
+}
+.nav-item:hover{ background:var(--hover); color:var(--text); }
+.nav-item.active{ color:var(--text); font-weight:600; }
+
+.nav-item .nav-icon{
+  width:24px; height:24px; flex:0 0 24px; filter:none;
+}
+
+.nav-item.with-chevron{ position:relative; }
+.nav-item .chevron{
+  margin-left:auto;
+  width:22px; height:22px; color:var(--icon);
+}
+
+.submenu-group .expanded{ height:32px; align-items:center; }
+.submenu{
+  display:flex;
+  flex-direction:column;
+  padding-left:48px; /* aligns submenu text under labels per YAML x positions */
+  gap:8px;
+  margin-top:6px;
+}
+.submenu-item{
+  height:24px; display:flex; align-items:center;
+  color:var(--text-secondary); text-decoration:none;
+}
+.submenu-item:hover{ color:var(--text); }
+
+/* Messages badge */
+.badge-item{ position:relative; }
+.badge{
+  margin-left:auto;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:20px; height:20px; border-radius:9999px;
+  background:var(--badge-red); color:var(--badge-red-text);
+  font-size:12px; font-weight:700; line-height:1;
+}
+
+/* Sidebar divider lines */
+.sidebar-divider{
+  height:1px; background:var(--border);
+  margin:26px 0;
+}
+
+/* Bottom icons area */
+.sidebar-bottom{
+  position:absolute;
+  left:0; right:0; bottom:14px;
+  display:flex; gap:16px;
+  justify-content:center;
+}
+.icon-button{
+  width:28px; height:28px;
+  border:none; background:transparent; border-radius:6px;
+  display:grid; place-items:center; cursor:pointer;
+}
+.icon-button:hover{ background:var(--hover); }
+.icon-button img{ width:24px; height:24px; }
+
+/* Vertical divider to the right of sidebar */
+.sidebar-vertical-divider{
+  background:var(--border);
+}
+
+/* Main area */
+.main{
+  min-width:0;
+  display:flex; flex-direction:column;
+}
+
+/* Topbar with search (1600x69 in Figma; we stretch horizontally but keep internal sizes) */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  background:var(--bg-canvas);
+}
+.topbar-inner{
+  height:69px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 16px;
+  gap:24px;
+}
+.brand-search{
+  display:flex; align-items:center; gap:24px;
+}
+.brand{ width:35px; height:33px; display:flex; align-items:center; }
+.brand-mark{
+  width:35px; height:33px; border-radius:8px;
+  background:#11182710; /* subtle placeholder block */
+  border:1px solid var(--border);
+}
+
+/* Search field container 402x45 from YAML */
+.search-field{
+  position:relative; display:flex; align-items:center;
+  width:402px; height:45px; border-radius:12px;
+  background:#FFFFFF; border:1px solid var(--border);
+  padding-left:40px; padding-right:12px;
+}
+.search-field .search-icon{
+  position:absolute; left:12px; width:20px; height:20px;
+  opacity:.8;
+}
+.search-field input{
+  width:100%; height:100%; border:none; outline:none;
+  font-size:14px; color:var(--text);
+}
+.search-field input::placeholder{ color:var(--muted); }
+.search-field:focus-within{ border-color:var(--accent); box-shadow:0 0 0 3px #3B82F633; }
+
+/* Right side icons */
+.topbar-right{
+  display:flex; align-items:center; gap:16px;
+}
+.notif{
+  width:32px; height:32px; border-radius:8px; border:none; background:#FFFFFF;
+  display:grid; place-items:center; cursor:pointer; border:1px solid var(--border);
+}
+.notif:hover{ background:var(--hover); }
+.notif img{ width:24px; height:24px; }
+.avatar{
+  width:32px; height:32px; border-radius:50%; object-fit:cover;
+  border:1px solid var(--border); background:#fff;
+}
+/* bottom divider */
+.topbar-divider{ height:1px; background:var(--border); }
+
+/* Content placeholders to reflect screenshot spacing and width (aligned to navbar width area) */
+.content{
+  display:flex; flex-direction:column; gap:18px;
+  padding:18px 16px 48px 16px;
+}
+.content-bar{
+  background:#FFFFFF; border:1px solid var(--border); border-radius:8px;
+  height:40px; display:flex; align-items:center; padding:8px 12px; gap:12px;
+  max-width:1600px; /* match Figma nav width */
+}
+.content-bar.large{ width:min(100%, 1600px); }
+.content-bar.medium{ width:min(100%, 1400px); }
+.content-bar.small{ width:min(100%, 1100px); }
+.ghost-left{
+  width:180px; height:8px; border-radius:4px; background:var(--border);
+}
+.ghost-left.short{ width:120px; }
+.ghost-right{
+  margin-left:auto; display:flex; gap:8px;
+}
+.ghost-right::before, .ghost-right::after{
+  content:""; width:24px; height:24px; border-radius:9999px; background:#D1D5DB;
+}
+
+/* Typography scale approximations */
+.nav-label,
+.submenu-item,
+.search-field input,
+.content{ font-size:14px; }
+
+/* Responsive behavior to mirror tablet/mobile components presence */
+@media (max-width: 1024px){
+  .search-field{ width:320px; }
+}
+@media (max-width: 768px){
+  .app-grid{ grid-template-columns: 56px 1px 1fr; }
+  .sidebar .nav-label, .submenu{ display:none; }
+  .search-field{ display:none; }
+}

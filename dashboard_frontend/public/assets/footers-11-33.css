@@ -1,0 +1,145 @@
+:root {
+  /* Colors (from YAML background color_f3f4f6 and typical tokens) */
+  --bg-canvas: #f3f4f6;
+  --panel-bg: #ffffff;
+  --text-muted: #6b7280;      /* gray-500 approximation */
+  --shadow: rgba(17, 24, 39, 0.06);
+
+  /* Typography */
+  --font-family: "Helvetica Neue", Arial, sans-serif;
+
+  /* Component sizes per Figma */
+  --desktop-width: 1318px;
+  --desktop-height: 120px;
+
+  --mobile-width: 409px;
+  --mobile-height: 176px;
+
+  /* Spacing and radii */
+  --panel-radius: 10px;
+  --panel-padding-y: 24px;
+  --panel-padding-x: 24px;
+  --gap-horizontal: 16px;
+
+  /* Social cluster */
+  --social-gap: 24px;
+  --icon-frame: 24px;
+  --icon-size: 18px;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(59,130,246,0.4);
+}
+
+/* Base canvas */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg-canvas);
+  font-family: var(--font-family);
+  color: var(--text-muted);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+.canvas {
+  min-height: 100vh;
+  padding: 32px 48px; /* approximate canvas padding to match screenshot positioning */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Footer card */
+.footer {
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  box-shadow: 0 1px 2px var(--shadow);
+}
+
+/* Container layout */
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--panel-padding-y) var(--panel-padding-x);
+  gap: var(--gap-horizontal);
+}
+
+/* Desktop exact size */
+.footer--desktop {
+  width: var(--desktop-width);
+  height: var(--desktop-height);
+}
+
+/* Mobile exact size */
+.footer--mobile {
+  width: var(--mobile-width);
+  height: var(--mobile-height);
+}
+
+/* Mobile vertical stack */
+.footer__container--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px; /* distance between copyright and social */
+}
+
+/* Typography */
+.footer__copyright {
+  margin: 0;
+  font-size: 14px;      /* typo_38 mapped */
+  line-height: 24px;    /* Figma text height */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Social group uses ul/li for semantics */
+.footer__social {
+  display: block;
+}
+.social__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--social-gap);
+}
+
+/* Each icon is a 24x24 target */
+.social__item {
+  display: inline-flex;
+  width: var(--icon-frame);
+  height: var(--icon-frame);
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px; /* style_4 feel */
+  text-decoration: none;
+  outline: none;
+}
+.social__item:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Icon image fits within 18x18 bounds inside 24x24 frame */
+.social__icon {
+  display: block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  object-fit: contain;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Lock viewport to the artboard width for pixel-accurate preview while allowing zoom -->
+  <meta name="viewport" content="width=793, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Badges (11:31)</title>
+
+  <!-- Performance: preload exact badge assets to avoid pop-in during pixel checking -->
+  <link rel="preload" as="image" href="./figmaimages/figma_image_11_24.svg">
+  <link rel="preload" as="image" href="./figmaimages/figma_image_11_22.svg">
+  <link rel="preload" as="image" href="./figmaimages/figma_image_11_20.svg">
+  <link rel="preload" as="image" href="./figmaimages/figma_image_11_18.svg">
+
+  <link rel="stylesheet" href="./badges-11-31.css"/>
+</head>
+<body>
+  <!-- Canvas/frame sized to Figma dimensions 793x188 with white background -->
+  <main id="screen-badges-11-31" role="main" aria-labelledby="badges-title">
+    <h1 id="badges-title" class="visually-hidden">Badges variants</h1>
+
+    <!-- Component set: Badge (11:34) -->
+    <section class="badge-set" role="group" aria-label="Badge set color variants">
+      <!-- Order per Figma left-to-right: Red, Gray, Green, Blue -->
+      <img class="badge" src="./figmaimages/figma_image_11_24.svg" alt="Red Badge" width="57" height="22" loading="eager" decoding="async" />
+      <img class="badge" src="./figmaimages/figma_image_11_22.svg" alt="Gray Badge" width="57" height="22" loading="eager" decoding="async" />
+      <img class="badge" src="./figmaimages/figma_image_11_20.svg" alt="Green Badge" width="57" height="22" loading="eager" decoding="async" />
+      <img class="badge" src="./figmaimages/figma_image_11_18.svg" alt="Blue Badge" width="57" height="22" loading="eager" decoding="async" />
+    </section>
+  </main>
+  <script src="./badges-11-31.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+:root {
+  --bg-canvas: #FFFFFF;
+  --text-strong: #0B1221;   /* heading */
+  --text-body: #475569;     /* body text */
+  --link: #2563EB;          /* hyperlink */
+  --font-family: "Helvetica Neue", Arial, sans-serif;
+
+  /* Type scale inferred from screenshot and YAML height hints */
+  --h1-size: 28px;
+  --h1-line: 36px;
+  --h1-weight: 700;
+
+  --body-size: 16px;
+  --body-line: 24px;
+  --body-weight: 400;
+
+  --link-weight: 500;
+
+  /* Frame / layout constants from YAML */
+  --frame-width: 768px;
+  --frame-height: 240px;
+
+  /* X coordinates (content column) */
+  --col-x: 248px;
+  --col-w: 704px;
+
+  /* Y coordinates */
+  --h1-y: 23px;
+  --p1-y: 83px;
+  --p2-y: 167px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  color: var(--text-body);
+  font-family: var(--font-family);
+}
+
+.frame-support {
+  position: relative;
+  width: var(--frame-width);
+  height: var(--frame-height);
+  background: var(--bg-canvas);
+  margin: 0 auto; /* center the 768px canvas in the viewport */
+}
+
+.heading {
+  position: absolute;
+  left: var(--col-x);
+  top: var(--h1-y);
+  width: var(--col-w);
+  margin: 0;
+  color: var(--text-strong);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+  font-weight: var(--h1-weight);
+  letter-spacing: 0;
+}
+
+.paragraph {
+  position: absolute;
+  left: var(--col-x);
+  top: var(--p1-y);
+  width: var(--col-w);
+  margin: 0;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--body-weight);
+  color: var(--text-body);
+}
+
+.paragraph-link {
+  position: absolute;
+  left: var(--col-x);
+  top: var(--p2-y);
+  width: var(--col-w);
+  margin: 0;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--link-weight);
+  color: var(--text-body);
+}
+
+.support-link {
+  color: var(--link);
+  text-decoration: underline;
+  font-weight: var(--link-weight);
+  word-break: break-word;
+}
+
+/* Optional: narrow screens - keep a minimal usable view while honoring layout */
+@media (max-width: 767px) {
+  html, body {
+    /* allow scaling on small screens */
+    overflow-x: auto;
+  }
+  .frame-support {
+    width: 100%;
+    min-width: 360px;
+    height: auto;
+    padding-bottom: 24px;
+  }
+  /* Switch to flow layout with padding while preserving typographic specs */
+  .heading,
+  .paragraph,
+  .paragraph-link {
+    position: static;
+    display: block;
+    width: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .heading { margin-top: 23px; }
+  .paragraph { margin-top: 24px; }
+  .paragraph-link { margin-top: 24px; }
+}

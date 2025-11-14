@@ -1,0 +1,160 @@
+:root{
+  /* Canvas and tokens */
+  --bg: #ffffff;        /* color_ffffff */
+  --accent: #0FA26E;    /* green accent for 404 decorative dot approx */
+  --muted: #EDEFF2;     /* light grey panels */
+  --ink-weak: #D7DCE0;  /* 404 numerals light grey */
+  --font: "Helvetica Neue", Arial, sans-serif;
+}
+
+*{ box-sizing:border-box }
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:#111827;
+  font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visually hidden utility for headings/labels */
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  overflow:hidden; clip:rect(0 0 0 0);
+  white-space:nowrap; border:0; padding:0; margin:-1px;
+}
+
+/* Fixed Figma frame (903:0) */
+.screen{
+  position:relative;
+  width:1003px;
+  height:1510px;
+  background:var(--bg);
+  margin:0 auto;
+  overflow:hidden;
+  will-change: transform;
+}
+
+/* Optional: scale down for smaller previews while keeping pixel grid */
+@media (max-width: 1003px){
+  .screen{
+    transform-origin: top left;
+    transform: scale(calc(100vw / 1003));
+    width:1003px;
+    height:1510px;
+  }
+}
+
+/* Place the two components at exact canvas Y offsets per YAML */
+#comp-search-903-82{
+  position:absolute;
+  left:0px;
+  top:57px;   /* search component y≈57 */
+  width:872px;
+  height:581px;
+}
+#comp-404-903-83{
+  position:absolute;
+  left:0px;
+  top:704px;  /* 404 component y≈704 */
+  width:900px;
+  height:600px;
+}
+
+/* Vector images inside components are absolutely positioned to maintain pixel fidelity */
+.component .vec{
+  position:absolute;
+  display:block;
+  pointer-events:none;
+  image-rendering: -webkit-optimize-contrast; /* WebKit crispness for small SVGs */
+  image-rendering: crisp-edges;               /* fallback */
+}
+
+/* SEARCH component placements (derived from YAML localizing to 872x581) */
+.v903_39{ left:180px; top:302px; width:48.353px; height:29.727px; }
+.v903_40{ left:561px; top:278px; width:33.749px; height:27.496px; }
+.v903_41{ left:203px; top:142px; width:33.429px; height:37.140px; }
+.v903_42{ left:419px; top:462px; width:15.285px; height:15.276px; }
+.v903_43{ left:485px; top:399px; width:16.802px; height:16.793px; }
+.v903_44{ left:652px; top:145px; width:13.564px; height:13.557px; }
+.v903_45{ left:169px; top:183px; width:20.546px; height:20.534px; }
+.v903_46{ left:302px; top:98px;  width:22.317px; height:22.305px; }
+.v903_47{ left:714px; top:371px; width:17.167px; height:13.725px; }
+.v903_48{ left:203px; top:496px; width:24.658px; height:24.644px; }
+.v903_49{ left:625px; top:431px; width:30.900px; height:41.177px; }
+.v903_52{ left:225px; top:522px; width:37.326px; height:37.305px; }
+
+/* Non-exported decorative base for search: subtle pale block */
+#comp-search-903-82::before{
+  content:"";
+  position:absolute;
+  left:150px;
+  top:60px;
+  width:374.358px;
+  height:374.144px;
+  border-radius:30px;
+  background:var(--muted);
+  opacity:0.25;
+  filter:blur(0.2px);
+}
+
+/* 404 component non-exported window base and numerals emulation */
+#comp-404-903-83 .win-base{
+  position:absolute;
+  left:110px;
+  top:40px;
+  width:648.791px;
+  height:421.647px;
+  background:var(--muted);
+  border-radius:20px;
+  opacity:0.35;
+}
+#comp-404-903-83 .num-404{
+  position:absolute;
+  left:210px;
+  top:155px;
+  width:480px;
+  text-align:center;
+  font-weight:800;
+  letter-spacing:2px;
+  font-size:200px;
+  line-height:1;
+  color:var(--ink-weak);
+  opacity:0.75;
+}
+#comp-404-903-83 .left-cross{
+  position:absolute;
+  left:70px;
+  top:110px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fff;
+  text-align:center;
+  line-height:44px;
+  font-size:28px;
+  font-weight:700;
+}
+
+/* 404 component foreground vector placements (localized into 900x600) */
+.v903_58{ left:631px; top:28px;  width:63.943px; height:23.177px; }
+.v903_60{ left:500px; top:28px;  width:23.177px; height:23.177px; }
+.v903_62{ left:217px; top:28px;  width:18.648px; height:18.648px; }
+.v903_64{ left:745px; top:223px; width:45.267px; height:45.267px; }
+.v903_66{ left:303px; top:115px; width:32.870px; height:32.870px; }
+.v903_67{ left:541px; top:430px; width:27.178px; height:27.178px; }
+.v903_69{ left:414px; top:419px; width:25.572px; height:25.572px; }
+.v903_70{ left:718px; top:20px;  width:21.515px; height:21.515px; }
+.v903_71{ left:731px; top:32px;  width:9.400px;  height:9.400px; }
+.v903_72{ left:195px; top:470px; width:19.251px; height:19.251px; }
+.v903_73{ left:205px; top:481px; width:8.411px;  height:8.411px; }
+.v903_76{ left:718px; top:458px; width:26.199px; height:26.199px; }
+.v903_77{ left:721px; top:458px; width:11.447px; height:11.447px; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}

@@ -1,0 +1,113 @@
+:root {
+  /* Colors pulled/inferred from YAML and existing assets guidance */
+  --bg-canvas: #ffffff;  /* color_ffffff */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --accent: #0ea5e9;
+
+  /* Typography based on yaml typography_ref */
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+
+  /* Heading typo_40 approximated for ~45px block height */
+  --h1-size: 28px;
+  --h1-line: 36px;
+  --h1-weight: 700;
+  --h1-letter: -0.2px;
+
+  /* Body typo_35 */
+  --body-size: 18px;
+  --body-line: 30px;
+  --body-weight: 400;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f3f4f6; /* neutral outer bg to reveal white frame edges */
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+}
+
+/* Centers the fixed Figma frame on the page */
+.page-bg {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+/* Figma frame (1:70) exact size */
+.frame-1-70 {
+  width: 768px;
+  height: 427px;
+  background: var(--bg-canvas);
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(17,24,39,0.04), 0 1px 2px rgba(17,24,39,0.06);
+  overflow: hidden;
+
+  /* Vertical flow per YAML */
+  display: flex;
+  flex-direction: column;
+
+  /* Reconstruct Figma x=248 left offset and content width 704 */
+  padding-left: 248px;
+  padding-right: calc(768px - 248px - 704px); /* equals 16px */
+  /* Top spacing tuned to match screenshot heading top gap */
+  padding-top: 32px;
+}
+
+/* Heading (1:71) */
+.heading-1-71 {
+  margin: 0;
+  width: 704px;
+  color: var(--text-primary);
+  font-weight: var(--h1-weight);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+  letter-spacing: var(--h1-letter);
+}
+
+/* First paragraph (1:72) */
+.paragraph-1-72 {
+  margin: 24px 0 0 0; /* vertical gap from heading */
+  width: 704px;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--body-weight);
+  color: var(--text-secondary);
+}
+
+/* Second paragraph (1:73) */
+.paragraph-1-73 {
+  margin: 24px 0 0 0; /* gap from first paragraph */
+  width: 704px;
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--body-weight);
+  color: var(--text-secondary);
+}
+
+/* Links inside body copy */
+.paragraph-1-72 a,
+.paragraph-1-73 a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Inline emphasis */
+.paragraph-1-73 strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Accessibility focus rings */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,500 @@
+/* ============================================
+   404 Mobile Screen - Pixel-Accurate Styles
+   Screen ID: 15:803
+   Dimensions: 360px × 667px
+   ============================================ */
+
+/* CSS Variables - Color Palette & Design Tokens */
+:root {
+  /* Background colors */
+  --bg-page: #F9FAFB;
+  --bg-white: #FFFFFF;
+  --bg-topbar: #FFFFFF;
+  
+  /* Text colors */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-white: #FFFFFF;
+  
+  /* Button colors */
+  --button-bg: #10B981;
+  --button-bg-hover: #059669;
+  --button-bg-active: #047857;
+  
+  /* Accent colors */
+  --notification-red: #EF4444;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Spacing */
+  --topbar-height: 64px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 10px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.4);
+}
+
+/* ============================================
+   Base Styles & Reset
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+}
+
+/* ============================================
+   Mobile Screen Container - 360x667
+   ============================================ */
+
+.mobile-screen {
+  position: relative;
+  width: 360px;
+  height: 667px;
+  background-color: var(--bg-page);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ============================================
+   Mobile Topbar - 360x64
+   ============================================ */
+
+.mobile-topbar {
+  width: 360px;
+  height: var(--topbar-height);
+  background-color: var(--bg-topbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 100;
+}
+
+/* Menu Icon (Hamburger) - 28x28 */
+.menu-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.menu-icon:hover {
+  opacity: 0.7;
+}
+
+.menu-icon:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.menu-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Right Content Container */
+.right-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Notification Bell - 24x24 */
+.notification-bell {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.notification-bell:hover {
+  opacity: 0.7;
+}
+
+.notification-bell:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.notification-bell svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Notification Dot - 8x8 */
+.notification-dot {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--notification-red);
+  border-radius: 50%;
+  border: 2px solid var(--bg-topbar);
+}
+
+/* Avatar - 32x32 */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: opacity 0.15s ease;
+}
+
+.avatar:hover {
+  opacity: 0.9;
+}
+
+.avatar:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   Main Container - 360x507
+   ============================================ */
+
+.container {
+  width: 360px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+}
+
+/* ============================================
+   Illustration Section - 360x303
+   ============================================ */
+
+.illustration-section {
+  width: 360px;
+  height: 303px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.illustration-404 {
+  position: relative;
+  width: 339px;
+  height: 238px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Large 404 Background Text */
+.illustration-bg-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 140px;
+  font-weight: 800;
+  line-height: 1;
+  color: #E5E7EB;
+  opacity: 0.5;
+  letter-spacing: -0.02em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Vector Elements - Decorative */
+.illus-vec {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Approximate positioning for decorative elements */
+.vec-58 {
+  left: 50%;
+  top: 20%;
+  width: 24px;
+  height: auto;
+}
+
+.vec-60 {
+  left: 30%;
+  top: 25%;
+  width: 9px;
+  height: auto;
+}
+
+.vec-64 {
+  right: 15%;
+  top: 30%;
+  width: 17px;
+  height: auto;
+}
+
+.vec-65 {
+  left: 35%;
+  top: 35%;
+  width: 9px;
+  height: auto;
+}
+
+.vec-66 {
+  left: 20%;
+  top: 15%;
+  width: 12px;
+  height: auto;
+}
+
+.vec-67 {
+  right: 25%;
+  bottom: 15%;
+  width: 10px;
+  height: auto;
+}
+
+.vec-69 {
+  left: 25%;
+  bottom: 20%;
+  width: 10px;
+  height: auto;
+}
+
+.vec-74 {
+  left: 10%;
+  top: 25%;
+  width: 14px;
+  height: auto;
+}
+
+.vec-79 {
+  left: 15%;
+  bottom: 30%;
+  width: 34px;
+  height: auto;
+}
+
+/* ============================================
+   Title Section - 360x188
+   ============================================ */
+
+.title-section {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  text-align: center;
+}
+
+.hero-text {
+  width: 100%;
+  max-width: 328px;
+  margin-bottom: 22px;
+}
+
+/* Heading - "Page not found" */
+.heading {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 45px;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+}
+
+/* Description Text */
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================
+   CTA Button - 131x39
+   ============================================ */
+
+.cta-button {
+  width: 131px;
+  height: 39px;
+  background-color: var(--button-bg);
+  color: var(--text-white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0;
+  border-radius: 8px;
+  padding: 9px 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  margin-top: 39px;
+}
+
+.cta-button:hover {
+  background-color: var(--button-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.cta-button:active {
+  background-color: var(--button-bg-active);
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cta-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+
+/* For screens smaller than 360px */
+@media (max-width: 359px) {
+  .mobile-screen {
+    width: 100%;
+    min-width: 320px;
+  }
+  
+  .mobile-topbar,
+  .container,
+  .illustration-section,
+  .title-section {
+    width: 100%;
+  }
+  
+  .illustration-404 {
+    width: 100%;
+    max-width: 339px;
+  }
+  
+  .illustration-bg-text {
+    font-size: 120px;
+  }
+  
+  .heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  .description {
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
+/* For screens larger than 360px - center the mobile frame */
+@media (min-width: 361px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #E5E7EB;
+  }
+  
+  .mobile-screen {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+  }
+}

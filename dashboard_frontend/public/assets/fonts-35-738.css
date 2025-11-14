@@ -1,0 +1,96 @@
+:root {
+  --bg-canvas: #FFFFFF;
+  --text-strong: #111827;  /* near gray-900 */
+  --text-default: #374151; /* gray-700 */
+  --link: #2563EB;         /* blue-600 */
+  --link-hover: #1D4ED8;   /* blue-700 */
+  --divider: #E5E7EB;      /* gray-200 (reserved) */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  color: var(--text-default);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Root frame 768x281 — pixel-locked to Figma artboard */
+.fonts-35-738 {
+  position: relative;
+  width: 768px;          /* Figma frame width */
+  height: 281px;         /* Figma frame height */
+  background: var(--bg-canvas);
+  display: block;
+
+  /* Reconstruct Figma content column at x=248 with width 704 */
+  padding-left: 248px;   /* content x */
+  padding-right: calc(768px - 248px - 704px); /* equals 16px */
+  padding-top: 32px;     /* inferred from node y positions */
+  padding-bottom: 32px;  /* visual balance; safe region */
+}
+
+/* Content column constrained to 704px width to match Figma text blocks */
+.fonts-35-738 .content {
+  width: 704px;
+  max-width: 704px;
+}
+
+/* Heading block: 704x45 in YAML -> size 24, line-height 45, strong weight */
+.fonts-35-738 h1 {
+  margin: 0 0 24px 0;    /* vertical gap to first paragraph */
+  font-size: 24px;
+  line-height: 45px;     /* matches Figma text box height */
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--text-strong);
+}
+
+/* Body paragraph: 704x60 -> size 16, line-height 30 (2 lines) */
+.fonts-35-738 p {
+  margin: 0 0 20px 0;    /* gap to next block */
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 400;
+  color: var(--text-default);
+}
+
+/* Link paragraph: 704x64 -> line-height 32 (2 lines) */
+.fonts-35-738 .link-paragraph {
+  line-height: 32px;
+  margin: 0; /* last block often aligns to bottom of artboard area */
+}
+
+/* Link styling */
+.fonts-35-738 a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.fonts-35-738 a:hover,
+.fonts-35-738 a:focus-visible {
+  color: var(--link-hover);
+  outline: none;
+}
+
+/* Responsive hint: allow horizontal scroll on narrow screens while preserving artboard fidelity */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: auto;
+  }
+  .fonts-35-738 {
+    width: 768px;  /* keep artboard size for pixel-accuracy */
+    height: 281px;
+  }
+}

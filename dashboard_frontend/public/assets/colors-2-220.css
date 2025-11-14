@@ -1,0 +1,184 @@
+:root{
+  --bg-canvas:#FFFFFF;
+  /* neutrals from coolGray for text */
+  --text-strong:#171725;
+  --text-muted:#696974;
+
+  /* color tokens (from YAML) */
+  /* coolGray */
+  --coolGray-900:#171725;
+  --coolGray-800:#44444F;
+  --coolGray-700:#696974;
+  --coolGray-600:#92929D;
+  --coolGray-500:#B5B5BE;
+  --coolGray-400:#D5D5DC;
+  --coolGray-300:#E2E2EA;
+  --coolGray-200:#F1F1F5;
+  --coolGray-100:#F3F4F6;
+  --coolGray-050:#F9FAFB;
+
+  /* red */
+  --red-900:#771D1D;
+  --red-800:#9B1C1C;
+  --red-700:#C81E1E;
+  --red-600:#E02424;
+  --red-500:#F05252;
+  --red-400:#F98080;
+  --red-300:#F8B4B4;
+  --red-200:#FBD5D5;
+  --red-100:#FDE8E8;
+  --red-050:#FDF2F2;
+
+  /* green */
+  --green-900:#014737;
+  --green-800:#03543F;
+  --green-700:#046C4E;
+  --green-600:#057A55;
+  --green-500:#0E9F6E;
+  --green-400:#31C48D;
+  --green-300:#84E1BC;
+  --green-200:#BCF0DA;
+  --green-100:#DEF7EC;
+  --green-050:#F3FAF7;
+
+  /* blue */
+  --blue-900:#233876;
+  --blue-800:#1E429F;
+  --blue-700:#1A56DB;
+  --blue-600:#1C64F2;
+  --blue-500:#3F83F8;
+  --blue-400:#76A9FA;
+  --blue-300:#A4CAFE;
+  --blue-200:#C3DDFD;
+  --blue-100:#E1EFFE;
+  --blue-050:#EBF5FF;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg-canvas);}
+
+.visually-hidden{
+  position:absolute !important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+.colors-screen{
+  width:1191px; /* match Figma frame */
+  min-height:822px;
+  margin:0 auto;
+  padding:40px; /* inferred outer margin to fit 1110 content width */
+  display:flex;
+  flex-direction:column;
+  gap:30px; /* space between groups */
+  font-family:"Helvetica Neue", Arial, sans-serif;
+  color:var(--text-strong);
+}
+
+.color-group{
+  width:1110px; /* exact group width per YAML */
+  height:150px; /* group block height */
+  display:flex;
+  flex-direction:column;
+}
+
+.group-headings{
+  display:flex;
+  flex-direction:column;
+  gap:8px; /* title to token path */
+  margin-bottom:16px; /* token path to swatches */
+}
+
+.group-title{
+  margin:0;
+  font-size:16px;
+  line-height:24px;
+  font-weight:700;
+  color:var(--text-strong);
+}
+
+.group-token{
+  font-size:14px;
+  line-height:20px;
+  font-weight:500;
+  color:var(--text-muted);
+}
+
+.swatch-row{
+  display:flex;
+  flex-direction:row;
+  /* No gap to exactly match 1110 width from summed swatches */
+  width:1110px;
+  height:75px;
+  overflow:hidden;
+  border-radius:10px; /* subtle rounding on row edges as in screenshot shadow feel */
+}
+
+.swatch{
+  height:75px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--swatch-bg);
+  border-radius:8px; /* keep inner rounding for each tile */
+  position:relative;
+}
+
+.w-109{ width:109px; }
+.w-129{ width:129px; }
+
+.swatch span{
+  font-size:14px;
+  line-height:20px;
+  font-weight:600;
+  letter-spacing:0;
+  /* dynamic via parent modifiers below */
+}
+
+/* Text color thresholds to match screenshot appearance */
+.swatch-row--coolgray .swatch[data-grade="900"] span,
+.swatch-row--coolgray .swatch[data-grade="800"] span,
+.swatch-row--coolgray .swatch[data-grade="700"] span,
+.swatch-row--coolgray .swatch[data-grade="600"] span,
+.swatch-row--coolgray .swatch[data-grade="500"] span,
+.swatch-row--red .swatch[data-grade="900"] span,
+.swatch-row--red .swatch[data-grade="800"] span,
+.swatch-row--red .swatch[data-grade="700"] span,
+.swatch-row--red .swatch[data-grade="600"] span,
+.swatch-row--red .swatch[data-grade="500"] span,
+.swatch-row--green .swatch[data-grade="900"] span,
+.swatch-row--green .swatch[data-grade="800"] span,
+.swatch-row--green .swatch[data-grade="700"] span,
+.swatch-row--green .swatch[data-grade="600"] span,
+.swatch-row--green .swatch[data-grade="500"] span,
+.swatch-row--blue .swatch[data-grade="900"] span,
+.swatch-row--blue .swatch[data-grade="800"] span,
+.swatch-row--blue .swatch[data-grade="700"] span,
+.swatch-row--blue .swatch[data-grade="600"] span,
+.swatch-row--blue .swatch[data-grade="500"] span{
+  color:#FFFFFF;
+}
+
+.swatch-row--coolgray .swatch[data-grade="400"] span,
+.swatch-row--coolgray .swatch[data-grade="300"] span,
+.swatch-row--coolgray .swatch[data-grade="200"] span,
+.swatch-row--coolgray .swatch[data-grade="100"] span,
+.swatch-row--coolgray .swatch[data-grade="050"] span,
+.swatch-row--red .swatch[data-grade="400"] span,
+.swatch-row--red .swatch[data-grade="300"] span,
+.swatch-row--red .swatch[data-grade="200"] span,
+.swatch-row--red .swatch[data-grade="100"] span,
+.swatch-row--red .swatch[data-grade="050"] span,
+.swatch-row--green .swatch[data-grade="400"] span,
+.swatch-row--green .swatch[data-grade="300"] span,
+.swatch-row--green .swatch[data-grade="200"] span,
+.swatch-row--green .swatch[data-grade="100"] span,
+.swatch-row--green .swatch[data-grade="050"] span,
+.swatch-row--blue .swatch[data-grade="400"] span,
+.swatch-row--blue .swatch[data-grade="300"] span,
+.swatch-row--blue .swatch[data-grade="200"] span,
+.swatch-row--blue .swatch[data-grade="100"] span,
+.swatch-row--blue .swatch[data-grade="050"] span{
+  color:var(--text-strong);
+}

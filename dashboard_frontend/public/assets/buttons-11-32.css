@@ -1,0 +1,129 @@
+:root{
+  /* Canvas */
+  --bg-canvas: #ffffff;
+
+  /* Primary button colors (from screenshot/YAML approximations) */
+  --btn-primary-default: #2f6fe4; /* base blue */
+  --btn-primary-hover: #2a63cc;   /* darker hover */
+  --btn-text-on-primary: #ffffff;
+
+  /* Focus ring */
+  --focus-ring: #6fb3ff;
+
+  /* Typography (fallbacks assumed) */
+  --font-family: "Helvetica Neue", Arial, sans-serif;
+  --font-weight-regular: 500;
+
+  /* Spacing between columns/rows within the component set (derived to fit 721x222) */
+  --column-gap: 32px;
+  --row-gap: 22px;
+
+  /* Component set frame */
+  --set-width: 721px;
+  --set-height: 222px;
+
+  /* Canvas frame */
+  --frame-width: 793px;
+  --frame-height: 462px;
+
+  /* Dashed boundary color (spec preview) */
+  --spec-dashed: #6fd2b2;
+}
+
+*{box-sizing:border-box}
+
+html, body{
+  margin:0;
+  height:100%;
+  background: var(--bg-canvas);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sr-only{
+  position:absolute;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* Canvas frame: 793x462 centered in viewport for preview parity */
+.canvas{
+  width: var(--frame-width);
+  height: var(--frame-height);
+  margin: 0 auto;
+  background: var(--bg-canvas);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Component set area: 721x222 with dashed preview boundary similar to screenshot */
+.component-set{
+  width: var(--set-width);
+  height: var(--set-height);
+  border:2px dashed var(--spec-dashed);
+  border-radius:12px;
+  padding:16px 20px;
+  display:flex;
+  gap: var(--column-gap);
+  align-items:flex-start;
+  justify-content:flex-start;
+}
+
+.component-set.no-boundary{
+  border-color: transparent;
+}
+
+/* 5 columns by size, states stacked vertically per column */
+.variant-column{
+  display:flex;
+  flex-direction:column;
+  gap: var(--row-gap);
+}
+
+/* Each variant is a figure with a visually hidden caption for a11y */
+.variant{
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+/* Reset for crisp rendering at exact dimensions */
+.btn-img{
+  display:block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Optional helper classes if we need to render live buttons instead of images */
+.button{
+  color: var(--btn-text-on-primary);
+  background: var(--btn-primary-default);
+  border:none;
+  border-radius: 20px;
+  font-weight: var(--font-weight-regular);
+  cursor:pointer;
+  transition: background .15s ease, box-shadow .15s ease, transform .02s ease;
+}
+.button:hover{ background: var(--btn-primary-hover); }
+.button:active{ transform: translateY(1px); }
+.button:focus-visible{
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Size tokens (reference only if using live buttons) */
+.button.xs{ height:32px; padding: 0 12px; font-size:12px; line-height:18px; border-radius:16px; }
+.button.sm{ height:39px; padding: 0 13px; font-size:14px; line-height:21px; border-radius:18px; }
+.button.base{ height:39px; padding: 0 17px; font-size:14px; line-height:21px; border-radius:20px; }
+.button.l{ height:42px; padding: 0 17px; font-size:16px; line-height:24px; border-radius:21px; }
+.button.xl{ height:50px; padding: 0 25px; font-size:16px; line-height:24px; border-radius:25px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
