@@ -28,24 +28,6 @@ function App() {
           </Layout>
         } />
         
-        <Route path="/customers" element={
-          <Layout>
-            <IframeScreen src="/assets/overview-3-3111.html" title="Customers" />
-          </Layout>
-        } />
-        
-        <Route path="/products" element={
-          <Layout>
-            <IframeScreen src="/assets/overview-3-3111.html" title="Products" />
-          </Layout>
-        } />
-        
-        <Route path="/transactions" element={
-          <Layout>
-            <IframeScreen src="/assets/overview-3-3111.html" title="Transactions" />
-          </Layout>
-        } />
-        
         {/* Components routes */}
         <Route path="/components" element={
           <Layout>
@@ -71,9 +53,9 @@ function App() {
           </Layout>
         } />
         
-        <Route path="/components/icons" element={
+        <Route path="/heroicons" element={
           <Layout>
-            <IframeScreen src="/assets/heroicons-4-2561.html" title="Icons Component" />
+            <IframeScreen src="/assets/heroicons-4-2561.html" title="Heroicons" />
           </Layout>
         } />
         
@@ -163,7 +145,7 @@ function App() {
           </Layout>
         } />
         
-        {/* Responsive view routes */}
+        {/* Responsive view routes - Device Galleries */}
         <Route path="/overview-mobile" element={
           <Layout>
             <IframeScreen src="/assets/overview-mobile-14-1.html" title="Overview Mobile" />
@@ -182,7 +164,19 @@ function App() {
           </Layout>
         } />
         
-        {/* Error routes */}
+        {/* Error routes - both with and without /errors prefix */}
+        <Route path="/404" element={
+          <Layout>
+            <IframeScreen src="/assets/404-3-4143.html" title="404 Not Found" />
+          </Layout>
+        } />
+        
+        <Route path="/404-mobile" element={
+          <Layout>
+            <IframeScreen src="/assets/404mobile-15-803.html" title="404 Not Found Mobile" />
+          </Layout>
+        } />
+        
         <Route path="/errors/404" element={
           <Layout>
             <IframeScreen src="/assets/404-3-4143.html" title="404 Not Found" />

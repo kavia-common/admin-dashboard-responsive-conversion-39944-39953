@@ -6,6 +6,7 @@ import styles from './Sidebar.module.css';
 /**
  * Sidebar component with collapsible navigation
  * Provides primary navigation for the dashboard with active route highlighting
+ * Updated to include all refined asset-based screens
  * 
  * @param {Object} props - Component props
  * @param {boolean} props.collapsed - Whether the sidebar is collapsed
@@ -16,9 +17,16 @@ import styles from './Sidebar.module.css';
 function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileClose }) {
   const navItems = [
     { path: '/overview', label: 'Overview', icon: '📊' },
-    { path: '/customers', label: 'Customers', icon: '👥' },
-    { path: '/products', label: 'Products', icon: '📦' },
-    { path: '/transactions', label: 'Transactions', icon: '💳' },
+    { 
+      path: '/docs', 
+      label: 'Docs', 
+      icon: '📄',
+      children: [
+        { path: '/docs/introduction', label: 'Introduction' },
+        { path: '/support', label: 'Support' },
+        { path: '/license', label: 'License' }
+      ]
+    },
     { 
       path: '/components', 
       label: 'Components', 
@@ -27,17 +35,30 @@ function Sidebar({ collapsed = false, onToggle, isMobileOpen = false, onMobileCl
         { path: '/components/buttons', label: 'Buttons' },
         { path: '/components/badges', label: 'Badges' },
         { path: '/components/footers', label: 'Footers' },
-        { path: '/components/icons', label: 'Icons' }
+        { path: '/heroicons', label: 'Heroicons' },
+        { path: '/colors', label: 'Colors' },
+        { path: '/typography', label: 'Typography' },
+        { path: '/spacers', label: 'Spacers' }
+      ]
+    },
+    { path: '/sidebars-topbars', label: 'Navigation', icon: '🧭' },
+    { path: '/illustrations', label: 'Illustrations', icon: '🎨' },
+    { 
+      path: '/errors', 
+      label: 'Error Pages', 
+      icon: '⚠️',
+      children: [
+        { path: '/404', label: '404' },
+        { path: '/404-mobile', label: '404 Mobile' }
       ]
     },
     { 
-      path: '/docs', 
-      label: 'Documentation', 
-      icon: '📄',
+      path: '/device-galleries', 
+      label: 'Device Galleries', 
+      icon: '📱',
       children: [
-        { path: '/docs/introduction', label: 'Introduction' },
-        { path: '/docs/support', label: 'Support' },
-        { path: '/docs/license', label: 'License' }
+        { path: '/tablet', label: 'Tablet' },
+        { path: '/mobile', label: 'Mobile' }
       ]
     }
   ];
