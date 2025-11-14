@@ -2,108 +2,183 @@
 
 This document provides an overview of all available routes in the Admin Dashboard React application.
 
-## Route Structure
+## Architecture
 
-All asset screens from the Figma design have been integrated into the React app with proper routing. Each route renders the corresponding HTML/CSS/JS asset in an isolated iframe to prevent style conflicts and maintain pixel-perfect accuracy.
+The application now uses a **persistent layout shell** with:
+- **Sidebar**: Collapsible navigation with active route highlighting
+- **Topbar**: Search, notifications, and user avatar
+- **Main Content Area**: Dynamic page content
 
-## Available Routes
+All routes (except legacy reference pages) render within this shell, providing a cohesive single-page application experience.
 
-### Navigation Index
+---
+
+## Primary Dashboard Routes
+
+### Home & Overview
 - **Path:** `/`
-- **Description:** Home page with links to all screens
-- **Usage:** Primary navigation hub for quick access to any screen
+- **Redirects to:** `/overview`
+- **Description:** Default landing page, automatically navigates to Overview
 
-### Documentation & Information
-- **Path:** `/cover`
-- **Asset:** `cover-900-737.html`
-- **Description:** Landing page with branding and overview
+- **Path:** `/overview`
+- **Component:** `OverviewPage`
+- **Description:** Main dashboard with key metrics and charts
+- **Asset:** Renders `overview-3-3111.html` via iframe (TODO: Convert to native React)
 
-- **Path:** `/introduction`
-- **Asset:** `introduction-1-20.html`
-- **Description:** Introduction to the admin dashboard
+### Data Management Pages
 
-- **Path:** `/how-to-use`
-- **Asset:** `how-to-use-1-70.html`
-- **Description:** Usage instructions and guidelines
+- **Path:** `/customers`
+- **Component:** `CustomersPage`
+- **Description:** Customer list and management interface
+- **Status:** Placeholder (TODO: Implement native table components)
 
-- **Path:** `/support`
-- **Asset:** `support-1-74.html`
-- **Description:** Support information and contact
+- **Path:** `/products`
+- **Component:** `ProductsPage`
+- **Description:** Product catalog and inventory management
+- **Status:** Placeholder (TODO: Implement native grid/table)
 
-- **Path:** `/license`
-- **Asset:** `license-1-78.html`
-- **Description:** License details and terms
+- **Path:** `/transactions`
+- **Component:** `TransactionsPage`
+- **Description:** Transaction history with filtering capabilities
+- **Status:** Placeholder (TODO: Implement native table with sorting)
 
-### Design System
-- **Path:** `/fonts`
-- **Asset:** `fonts-35-738.html`
-- **Description:** Font family documentation
+---
 
-- **Path:** `/typography`
-- **Asset:** `typography-2-135.html`
-- **Description:** Typography scale and styles
+## UI Components Gallery
 
-- **Path:** `/colors`
-- **Asset:** `colors-2-220.html`
-- **Description:** Color palette and tokens
+### Components Hub
+- **Path:** `/components`
+- **Redirects to:** `/components/buttons`
+- **Description:** Default components page
 
-- **Path:** `/spacers`
-- **Asset:** `spacers-2-596.html`
-- **Description:** Spacing system guidelines
+### Component Categories
+All components render in a tabbed interface within `ComponentsPage`:
 
-### UI Components
-- **Path:** `/sidebars-topbars`
-- **Asset:** `sidebars-topbars-3-65.html`
-- **Description:** Navigation components (sidebars and topbars)
+- **Path:** `/components/buttons`
+- **Asset:** `buttons-11-32.html`
+- **Description:** Button component variants (sizes, states)
 
-- **Path:** `/heroicons`
+- **Path:** `/components/badges`
+- **Asset:** `badges-11-31.html`
+- **Description:** Badge component color variants
+
+- **Path:** `/components/footers`
+- **Asset:** `footers-11-33.html`
+- **Description:** Footer component layouts
+
+- **Path:** `/components/icons`
 - **Asset:** `heroicons-4-2561.html`
 - **Description:** Heroicons icon library
 
-- **Path:** `/badges`
-- **Asset:** `badges-11-31.html`
-- **Description:** Badge component variants
+**Implementation Note:** Components are currently displayed via iframe from Figma assets. Future enhancement should convert these to interactive React components.
 
-- **Path:** `/buttons`
-- **Asset:** `buttons-11-32.html`
-- **Description:** Button component variants
+---
 
-- **Path:** `/footers`
-- **Asset:** `footers-11-33.html`
-- **Description:** Footer component variants
+## Documentation
 
-- **Path:** `/illustrations`
-- **Asset:** `illustrations-903-0.html`
-- **Description:** Illustration assets and usage
+### Docs Hub
+- **Path:** `/docs`
+- **Redirects to:** `/docs/introduction`
+- **Description:** Default documentation page
 
-### Page Examples
-- **Path:** `/overview`
-- **Asset:** `overview-3-3111.html`
-- **Description:** Desktop dashboard overview page
+### Documentation Pages
+All documentation pages render via `DocsPage` component:
+
+- **Path:** `/docs/introduction`
+- **Asset:** `introduction-1-20.html`
+- **Description:** Getting started guide
+
+- **Path:** `/docs/support`
+- **Alias:** `/support`
+- **Asset:** `support-1-74.html`
+- **Description:** Support information and contact
+
+- **Path:** `/docs/license`
+- **Alias:** `/license`
+- **Asset:** `license-1-78.html`
+- **Description:** License terms and conditions
+
+---
+
+## Error Pages
+
+### 404 Not Found
+- **Path:** `/errors/404`
+- **Component:** `NotFoundPage`
+- **Asset:** `404-3-4143.html` (desktop) or `404mobile-15-803.html` (mobile)
+- **Description:** Page not found error with responsive design
+
+- **Path:** `/errors/404-mobile`
+- **Component:** `NotFoundPage`
+- **Description:** Mobile-specific 404 page
+
+### Catch-All Route
+- **Path:** `*` (any unmatched route)
+- **Component:** `NotFoundPage`
+- **Description:** Fallback for undefined routes
+
+---
+
+## Legacy/Reference Routes
+
+These routes are preserved for backward compatibility and design reference:
 
 - **Path:** `/overview-mobile`
 - **Asset:** `overview-mobile-14-1.html`
-- **Description:** Mobile dashboard overview page
-
-- **Path:** `/404`
-- **Asset:** `404-3-4143.html`
-- **Description:** Desktop 404 error page
-
-- **Path:** `/404-mobile`
-- **Asset:** `404mobile-15-803.html`
-- **Description:** Mobile 404 error page
-
-- **Path:** `/tablet`
-- **Asset:** `tablet-18-778.html`
-- **Description:** Tablet layout example
+- **Description:** Mobile overview design reference
 
 - **Path:** `/mobile`
 - **Asset:** `mobile-18-808.html`
 - **Description:** Mobile layout example
 
-### Fallback
-- **Path:** `*` (any unmatched route)
-- **Behavior:** Redirects to desktop 404 page
+- **Path:** `/tablet`
+- **Asset:** `tablet-18-778.html`
+- **Description:** Tablet layout example
+
+- **Path:** `/colors`
+- **Asset:** `colors-2-220.html`
+- **Description:** Color palette reference
+
+- **Path:** `/typography`
+- **Asset:** `typography-2-135.html`
+- **Description:** Typography system reference
+
+- **Path:** `/spacers`
+- **Asset:** `spacers-2-596.html`
+- **Description:** Spacing system reference
+
+---
+
+## Navigation Structure
+
+### Sidebar Navigation
+The sidebar provides hierarchical navigation:
+
+```
+📊 Overview
+👥 Customers
+📦 Products
+💳 Transactions
+🧩 Components
+   ├─ Buttons
+   ├─ Badges
+   ├─ Footers
+   └─ Icons
+📄 Documentation
+   ├─ Introduction
+   ├─ Support
+   └─ License
+```
+
+### Navigation Features
+- **Active State Highlighting**: Current route is highlighted in sidebar
+- **Keyboard Navigation**: Full keyboard support with arrow keys and tab order
+- **Collapsible Sidebar**: Toggle button to collapse/expand (desktop)
+- **Mobile Menu**: Hamburger menu with overlay on mobile devices
+- **Nested Navigation**: Component and docs sections expand to show sub-items
+- **ARIA Labels**: Full accessibility support with `aria-current` and labels
+
+---
 
 ## Asset Organization
 
@@ -112,19 +187,30 @@ All asset screens from the Figma design have been integrated into the React app 
 dashboard_frontend/
 ├── public/
 │   └── assets/
-│       ├── *.html           # Screen HTML files
-│       ├── *.css            # Screen stylesheets
-│       ├── *.js             # Screen scripts
-│       └── figmaimages/     # All image assets
+│       ├── *.html              # Screen HTML files
+│       ├── *.css               # Screen stylesheets
+│       ├── *.js                # Screen scripts
+│       └── figmaimages/        # All image assets
 ├── src/
 │   ├── components/
-│   │   └── IframeScreen.js  # Reusable iframe wrapper
-│   ├── screens/
-│   │   ├── CoverScreen.js
-│   │   ├── IntroductionScreen.js
-│   │   └── ...              # All screen wrappers
-│   ├── App.js               # Main router configuration
-│   └── index.js             # Application entry point
+│   │   ├── Layout/
+│   │   │   ├── Layout.js       # Main layout wrapper
+│   │   │   ├── Sidebar.js      # Navigation sidebar
+│   │   │   ├── Topbar.js       # Top header bar
+│   │   │   └── *.module.css    # Component styles
+│   │   └── IframeScreen.js     # Iframe wrapper component
+│   ├── pages/
+│   │   ├── OverviewPage.js     # Dashboard overview
+│   │   ├── CustomersPage.js    # Customer management
+│   │   ├── ProductsPage.js     # Product catalog
+│   │   ├── TransactionsPage.js # Transaction history
+│   │   ├── ComponentsPage.js   # UI components gallery
+│   │   ├── DocsPage.js         # Documentation pages
+│   │   ├── NotFoundPage.js     # 404 error page
+│   │   └── Page.module.css     # Shared page styles
+│   ├── screens/                # Legacy screen wrappers
+│   ├── App.js                  # Main router configuration
+│   └── index.js                # Application entry point
 ```
 
 ### Asset Path Resolution
@@ -133,28 +219,34 @@ dashboard_frontend/
 - Images are loaded from `/assets/figmaimages/`
 - Paths in HTML files use `./` relative notation
 
+---
+
 ## Implementation Details
 
-### Iframe Isolation
-Each screen is rendered in an isolated iframe with:
-- **Sandbox attributes:** `allow-scripts allow-same-origin allow-forms`
-- **No style leakage:** CSS from assets doesn't affect React app
-- **Independent scripts:** JavaScript runs in iframe context
-- **Scroll restoration:** Page scrolls to top on route change
+### Layout System
+- **Grid-based Layout**: CSS Grid for sidebar, topbar, and main content
+- **Responsive Breakpoints**: 
+  - Desktop: >= 769px (sidebar visible)
+  - Mobile: <= 768px (sidebar hidden, hamburger menu)
+- **CSS Isolation**: Layout styles use CSS Modules to prevent conflicts
+- **Asset Styles**: Iframe-rendered assets maintain independent styles
+
+### Routing Behavior
+- **SPA Navigation**: React Router handles all navigation without page reloads
+- **Scroll Restoration**: Pages scroll to top on route change
+- **Deep Linking**: All routes support direct URL access
+- **Route Guards**: 404 handling for undefined paths
 
 ### Accessibility
-- Each iframe has a descriptive `title` attribute
-- Focus management is handled automatically
-- Keyboard navigation works within iframes
-- Screen reader announcements for route changes
+- **Semantic HTML**: Proper use of `<nav>`, `<main>`, `<header>` elements
+- **ARIA Labels**: Descriptive labels for all interactive elements
+- **Keyboard Navigation**: Full keyboard support with visible focus indicators
+- **Screen Reader Support**: Proper announcements for route changes
+- **Skip Links**: (TODO) Add skip to main content link
 
-### Performance
-- Lazy loading of iframe content
-- Image assets use `loading="lazy"` where appropriate
-- CSS/JS files are not bundled with React app
-- Assets are served statically from public directory
+---
 
-## Development
+## Development Workflow
 
 ### Running the Application
 ```bash
@@ -162,80 +254,111 @@ npm start
 ```
 Access at: http://localhost:3000
 
-### Preview Workflow
-1. Navigate to `/` to see the index
-2. Click any screen link to preview
-3. Use browser back button or navigate to `/` to return
-4. All screens maintain their original dimensions and functionality
+### Adding a New Page
+1. Create page component in `src/pages/`
+2. Add route in `src/App.js`
+3. Add navigation item in `src/components/Layout/Sidebar.js`
+4. Update this ROUTES.md file
 
-### Hot Reload
-- Changes to React components hot reload
-- Changes to asset HTML/CSS/JS require browser refresh
-- Asset files are not watched by React dev server
+### Converting Iframe Assets to Native React
+For better performance and integration:
+1. Extract HTML structure from asset file
+2. Convert to React component with proper state management
+3. Extract CSS to CSS Module
+4. Migrate JavaScript logic to React hooks
+5. Update route to use new component instead of `IframeScreen`
+
+---
 
 ## Testing Routes
 
-### Manual Testing
-1. Visit each route from the navigation index
-2. Verify images load correctly
-3. Check that CSS styles are applied
-4. Test interactive elements (buttons, links)
-5. Validate responsive behavior on different viewports
-
-### QA Checklist
+### Manual Testing Checklist
 - [ ] All routes resolve without 404 errors
-- [ ] Images load from `/assets/figmaimages/`
-- [ ] CSS styles are scoped to iframe
-- [ ] JavaScript functions work correctly
-- [ ] No console errors in browser DevTools
-- [ ] Navigation index displays all screens
+- [ ] Sidebar highlights active route correctly
+- [ ] Navigation works without page reload
+- [ ] Mobile menu opens/closes properly
+- [ ] Keyboard navigation works (Tab, Arrow keys)
+- [ ] Screen readers announce route changes
+- [ ] Deep links work when pasted directly
 - [ ] Browser back/forward buttons work
-- [ ] Scroll position resets on route change
+- [ ] 404 page displays for unknown routes
 
-## Troubleshooting
+### QA Workflow
+1. Navigate through all sidebar items
+2. Test nested navigation (Components, Docs)
+3. Verify responsive behavior on mobile/tablet
+4. Check keyboard accessibility
+5. Test direct URL access for each route
+6. Verify asset loading in iframe pages
+7. Check console for errors
 
-### Images Not Loading
-- Verify `/public/assets/figmaimages/` contains all image files
-- Check browser DevTools Network tab for 404 errors
-- Ensure image paths in HTML use `./figmaimages/` prefix
-
-### CSS Not Applied
-- Confirm CSS files are in `/public/assets/`
-- Check that HTML `<link>` tags use correct relative paths
-- Verify no CORS errors in browser console
-
-### JavaScript Errors
-- Ensure JS files are in `/public/assets/`
-- Check that HTML `<script>` tags reference correct paths
-- Verify sandbox attributes allow script execution
-
-### Routing Issues
-- Clear browser cache and hard reload
-- Check React Router configuration in `App.js`
-- Verify all screen wrapper components are imported
+---
 
 ## Future Enhancements
 
-Potential improvements for the routing system:
+### Planned Improvements
+1. **Native React Components**: Convert iframe assets to React components
+   - Priority: Customers, Products, Transactions tables
+   - Use accessible table components with sorting/filtering
+   
+2. **Breadcrumb Navigation**: Add breadcrumbs for nested routes
 
-1. **Loading States:** Add loading spinners while iframes load
-2. **Error Boundaries:** Catch and display iframe loading errors
-3. **Breadcrumbs:** Add breadcrumb navigation for nested routes
-4. **Search:** Implement search functionality on navigation index
-5. **Favorites:** Allow users to bookmark frequently accessed screens
-6. **Theme Toggle:** Add dark/light mode for navigation index
-7. **Analytics:** Track which screens are viewed most often
-8. **Direct Links:** Add copy-to-clipboard for direct route URLs
+3. **Search Functionality**: Implement global search in topbar
+
+4. **User Menu**: Add dropdown menu on avatar click
+
+5. **Notifications Panel**: Implement notifications slide-out
+
+6. **Themes**: Add light/dark mode toggle
+
+7. **Loading States**: Add skeleton loaders for page transitions
+
+8. **Error Boundaries**: Catch and display component errors gracefully
+
+9. **Analytics**: Track page views and user interactions
+
+10. **Progressive Enhancement**: 
+    - Add service worker for offline support
+    - Implement code splitting for better performance
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue: Sidebar not showing**
+- Check browser width (hidden on mobile by default)
+- Verify Layout component is wrapping the route
+- Check CSS Modules are loading
+
+**Issue: Assets not loading in iframe**
+- Verify asset files exist in `/public/assets/`
+- Check network tab for 404 errors
+- Ensure paths use correct `/assets/` prefix
+
+**Issue: Navigation not highlighting**
+- Check route paths match exactly
+- Verify `NavLink` components use correct `to` prop
+- Check `end` prop on parent routes
+
+**Issue: Mobile menu not closing**
+- Verify overlay click handler is working
+- Check `onMobileClose` prop is passed correctly
+- Inspect z-index layering
+
+---
 
 ## Support
 
 For issues or questions about routing:
 1. Check this documentation first
 2. Review browser DevTools console for errors
-3. Verify asset files exist in correct locations
-4. Test with browser cache disabled
+3. Verify route configuration in `App.js`
+4. Test with different screen sizes
 
 ---
 
-**Last Updated:** 2024
+**Last Updated:** 2024  
+**Version:** 2.0 (Dashboard Layout Refactor)  
 **Maintained By:** Development Team

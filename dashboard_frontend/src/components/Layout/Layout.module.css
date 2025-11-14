@@ -1,0 +1,91 @@
+/* Layout Shell CSS Module */
+
+.layoutShell {
+  display: grid;
+  grid-template-areas: 
+    "sidebar topbar"
+    "sidebar main";
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 64px 1fr;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.layoutShell.collapsed {
+  grid-template-columns: 72px 1fr;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.topbar {
+  grid-area: topbar;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.main {
+  grid-area: main;
+  padding: 24px;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 150;
+  display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .layoutShell {
+    grid-template-areas: 
+      "topbar"
+      "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: 64px 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    transition: left 0.3s ease;
+    z-index: 200;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .overlay {
+    display: block;
+  }
+}

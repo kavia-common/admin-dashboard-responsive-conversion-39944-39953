@@ -1,0 +1,174 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  min-height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 18px;
+  color: #111827;
+}
+
+.logoText {
+  transition: opacity 0.3s ease;
+}
+
+.logoIcon {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.toggleBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #6b7280;
+  font-size: 16px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggleBtn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.nav {
+  flex: 1;
+  padding: 16px 8px;
+  overflow-y: auto;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  margin-bottom: 4px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.navLink:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.navLink.active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.navIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.navLabel {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subNav {
+  list-style: none;
+  margin: 4px 0 8px 0;
+  padding: 0;
+}
+
+.subNavItem {
+  margin: 0;
+}
+
+.subNavLink {
+  display: block;
+  padding: 8px 12px 8px 44px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.subNavLink:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.subNavLink.active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.collapsed .navLabel,
+.collapsed .subNav {
+  display: none;
+}
+
+.collapsed .navLink {
+  justify-content: center;
+  padding: 10px 8px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 200;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.mobileOpen {
+    left: 0;
+  }
+
+  .toggleBtn {
+    display: none;
+  }
+}
