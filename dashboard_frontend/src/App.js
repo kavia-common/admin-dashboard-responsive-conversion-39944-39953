@@ -1,86 +1,48 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import Skeleton from './components/Skeleton/Skeleton';
+import IframeScreen from './components/IframeScreen';
 import './App.css';
-
-// Lazy load all page components for better performance
-const OverviewPage = lazy(() => import('./pages/OverviewPage'));
-const CustomersPage = lazy(() => import('./pages/CustomersPage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
-const TransactionsPage = lazy(() => import('./pages/TransactionsPage'));
-const ComponentsPage = lazy(() => import('./pages/ComponentsPage'));
-const DocsPage = lazy(() => import('./pages/DocsPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-
-// Legacy screen wrappers for backward compatibility
-const OverviewMobileScreen = lazy(() => import('./screens/OverviewMobileScreen'));
-const TabletScreen = lazy(() => import('./screens/TabletScreen'));
-const MobileScreen = lazy(() => import('./screens/MobileScreen'));
-const ColorsScreen = lazy(() => import('./screens/ColorsScreen'));
-const TypographyScreen = lazy(() => import('./screens/TypographyScreen'));
-const SpacersScreen = lazy(() => import('./screens/SpacersScreen'));
-const CoverScreen = lazy(() => import('./screens/CoverScreen'));
-const FontsScreen = lazy(() => import('./screens/FontsScreen'));
-const HowToUseScreen = lazy(() => import('./screens/HowToUseScreen'));
-const IllustrationsScreen = lazy(() => import('./screens/IllustrationsScreen'));
-const SidebarsTopbarsScreen = lazy(() => import('./screens/SidebarsTopbarsScreen'));
-
-// Loading fallback component
-const PageLoader = () => (
-  <div style={{ padding: '24px' }}>
-    <Skeleton variant="text" width="200px" height={32} />
-    <div style={{ marginTop: '24px' }}>
-      <Skeleton variant="rectangular" width="100%" height={400} />
-    </div>
-  </div>
-);
 
 // PUBLIC_INTERFACE
 /**
  * Main App component with routing and layout
- * Provides dashboard shell with sidebar navigation and lazy-loaded page routing
+ * All routes now point to IframeScreen instances loading refined asset HTML files
+ * Sidebar/Topbar provided by Layout, content from /assets/*.html files only
  */
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Main dashboard routes with layout and Suspense */}
+        {/* Root redirect to overview */}
         <Route path="/" element={
           <Layout>
             <Navigate to="/overview" replace />
           </Layout>
         } />
         
+        {/* Main dashboard routes - all using IframeScreen */}
         <Route path="/overview" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <OverviewPage />
-            </Suspense>
+            <IframeScreen src="/assets/overview-3-3111.html" title="Overview Dashboard" />
           </Layout>
         } />
         
         <Route path="/customers" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <CustomersPage />
-            </Suspense>
+            <IframeScreen src="/assets/overview-3-3111.html" title="Customers" />
           </Layout>
         } />
         
         <Route path="/products" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ProductsPage />
-            </Suspense>
+            <IframeScreen src="/assets/overview-3-3111.html" title="Products" />
           </Layout>
         } />
         
         <Route path="/transactions" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <TransactionsPage />
-            </Suspense>
+            <IframeScreen src="/assets/overview-3-3111.html" title="Transactions" />
           </Layout>
         } />
         
@@ -93,33 +55,25 @@ function App() {
         
         <Route path="/components/buttons" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ComponentsPage />
-            </Suspense>
+            <IframeScreen src="/assets/buttons-11-32.html" title="Buttons Component" />
           </Layout>
         } />
         
         <Route path="/components/badges" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ComponentsPage />
-            </Suspense>
+            <IframeScreen src="/assets/badges-11-31.html" title="Badges Component" />
           </Layout>
         } />
         
         <Route path="/components/footers" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ComponentsPage />
-            </Suspense>
+            <IframeScreen src="/assets/footers-11-33.html" title="Footers Component" />
           </Layout>
         } />
         
         <Route path="/components/icons" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ComponentsPage />
-            </Suspense>
+            <IframeScreen src="/assets/heroicons-4-2561.html" title="Icons Component" />
           </Layout>
         } />
         
@@ -132,156 +86,119 @@ function App() {
         
         <Route path="/docs/introduction" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <DocsPage />
-            </Suspense>
+            <IframeScreen src="/assets/introduction-1-20.html" title="Introduction Documentation" />
           </Layout>
         } />
         
         <Route path="/docs/support" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <DocsPage />
-            </Suspense>
+            <IframeScreen src="/assets/support-1-74.html" title="Support Documentation" />
           </Layout>
         } />
         
         <Route path="/support" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <DocsPage />
-            </Suspense>
+            <IframeScreen src="/assets/support-1-74.html" title="Support" />
           </Layout>
         } />
         
         <Route path="/docs/license" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <DocsPage />
-            </Suspense>
+            <IframeScreen src="/assets/license-1-78.html" title="License Documentation" />
           </Layout>
         } />
         
         <Route path="/license" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <DocsPage />
-            </Suspense>
+            <IframeScreen src="/assets/license-1-78.html" title="License" />
           </Layout>
         } />
         
         <Route path="/docs/how-to-use" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <HowToUseScreen />
-            </Suspense>
+            <IframeScreen src="/assets/how-to-use-1-70.html" title="How to Use Documentation" />
+          </Layout>
+        } />
+        
+        {/* Design system routes */}
+        <Route path="/colors" element={
+          <Layout>
+            <IframeScreen src="/assets/colors-2-220.html" title="Colors" />
+          </Layout>
+        } />
+        
+        <Route path="/typography" element={
+          <Layout>
+            <IframeScreen src="/assets/typography-2-135.html" title="Typography" />
+          </Layout>
+        } />
+        
+        <Route path="/spacers" element={
+          <Layout>
+            <IframeScreen src="/assets/spacers-2-596.html" title="Spacers" />
+          </Layout>
+        } />
+        
+        <Route path="/cover" element={
+          <Layout>
+            <IframeScreen src="/assets/cover-900-737.html" title="Cover" />
+          </Layout>
+        } />
+        
+        <Route path="/fonts" element={
+          <Layout>
+            <IframeScreen src="/assets/fonts-35-738.html" title="Fonts" />
+          </Layout>
+        } />
+        
+        <Route path="/illustrations" element={
+          <Layout>
+            <IframeScreen src="/assets/illustrations-903-0.html" title="Illustrations" />
+          </Layout>
+        } />
+        
+        <Route path="/sidebars-topbars" element={
+          <Layout>
+            <IframeScreen src="/assets/sidebars-topbars-3-65.html" title="Sidebars & Topbars" />
+          </Layout>
+        } />
+        
+        {/* Responsive view routes */}
+        <Route path="/overview-mobile" element={
+          <Layout>
+            <IframeScreen src="/assets/overview-mobile-14-1.html" title="Overview Mobile" />
+          </Layout>
+        } />
+        
+        <Route path="/mobile" element={
+          <Layout>
+            <IframeScreen src="/assets/mobile-18-808.html" title="Mobile View" />
+          </Layout>
+        } />
+        
+        <Route path="/tablet" element={
+          <Layout>
+            <IframeScreen src="/assets/tablet-18-778.html" title="Tablet View" />
           </Layout>
         } />
         
         {/* Error routes */}
         <Route path="/errors/404" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <NotFoundPage />
-            </Suspense>
+            <IframeScreen src="/assets/404-3-4143.html" title="404 Not Found" />
           </Layout>
         } />
         
         <Route path="/errors/404-mobile" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <NotFoundPage />
-            </Suspense>
-          </Layout>
-        } />
-        
-        {/* Legacy/reference routes (kept for backward compatibility) */}
-        <Route path="/overview-mobile" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <OverviewMobileScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/mobile" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <MobileScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/tablet" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <TabletScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/colors" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <ColorsScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/typography" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <TypographyScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/spacers" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <SpacersScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/cover" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <CoverScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/fonts" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <FontsScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/illustrations" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <IllustrationsScreen />
-            </Suspense>
-          </Layout>
-        } />
-        
-        <Route path="/sidebars-topbars" element={
-          <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <SidebarsTopbarsScreen />
-            </Suspense>
+            <IframeScreen src="/assets/404mobile-15-803.html" title="404 Not Found Mobile" />
           </Layout>
         } />
         
         {/* Catch-all 404 route */}
         <Route path="*" element={
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <NotFoundPage />
-            </Suspense>
+            <IframeScreen src="/assets/404-3-4143.html" title="404 Not Found" />
           </Layout>
         } />
       </Routes>
