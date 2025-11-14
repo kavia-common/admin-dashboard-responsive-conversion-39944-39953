@@ -4,14 +4,13 @@ import React, { useEffect, useRef } from 'react';
 /**
  * IframeScreen component for rendering asset HTML files in isolation
  * Uses iframe to prevent CSS/JS conflicts with the React app
+ * Ensures zero UI changes to the rendered HTML/CSS/JS from assets
  * 
  * @param {Object} props - Component props
- * @param {string} props.src - Path to the HTML file to load
+ * @param {string} props.src - Path to the HTML file to load (e.g., /assets/buttons-11-32.html)
  * @param {string} props.title - Screen title for accessibility
- * @param {string} props.width - Frame width (optional)
- * @param {string} props.height - Frame height (optional)
  */
-function IframeScreen({ src, title, width = '100%', height = '100vh' }) {
+function IframeScreen({ src, title }) {
   const iframeRef = useRef(null);
 
   useEffect(() => {
@@ -23,10 +22,9 @@ function IframeScreen({ src, title, width = '100%', height = '100vh' }) {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    // Handle iframe load
+    // Handle iframe load - adjust height to content if possible
     const handleLoad = () => {
       try {
-        // Adjust iframe height to content if needed
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         if (iframeDoc && iframeDoc.body) {
           const contentHeight = iframeDoc.body.scrollHeight;
@@ -35,8 +33,8 @@ function IframeScreen({ src, title, width = '100%', height = '100vh' }) {
           }
         }
       } catch (e) {
-        // Cross-origin restrictions may prevent access
-        console.log('Unable to access iframe content for height adjustment');
+        // Cross-origin restrictions may prevent access - this is expected
+        console.debug('Unable to access iframe content for height adjustment (expected if different origin)');
       }
     };
 
@@ -49,26 +47,27 @@ function IframeScreen({ src, title, width = '100%', height = '100vh' }) {
   return (
     <div style={{
       width: '100%',
-      minHeight: '100vh',
-      background: '#f9fafb',
+      minHeight: 'calc(100vh - 140px)',
+      background: 'transparent',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'stretch',
       padding: '0',
-      overflow: 'auto'
+      overflow: 'hidden'
     }}>
       <iframe
         ref={iframeRef}
         src={src}
         title={title}
         style={{
-          width: width,
-          height: height,
+          width: '100%',
+          minHeight: 'calc(100vh - 140px)',
+          height: '100%',
           border: 'none',
           display: 'block',
           background: 'white'
         }}
-        sandbox="allow-scripts allow-same-origin allow-forms"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
         loading="lazy"
       />
     </div>

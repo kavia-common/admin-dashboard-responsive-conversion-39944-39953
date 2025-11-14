@@ -20,6 +20,11 @@ const MobileScreen = lazy(() => import('./screens/MobileScreen'));
 const ColorsScreen = lazy(() => import('./screens/ColorsScreen'));
 const TypographyScreen = lazy(() => import('./screens/TypographyScreen'));
 const SpacersScreen = lazy(() => import('./screens/SpacersScreen'));
+const CoverScreen = lazy(() => import('./screens/CoverScreen'));
+const FontsScreen = lazy(() => import('./screens/FontsScreen'));
+const HowToUseScreen = lazy(() => import('./screens/HowToUseScreen'));
+const IllustrationsScreen = lazy(() => import('./screens/IllustrationsScreen'));
+const SidebarsTopbarsScreen = lazy(() => import('./screens/SidebarsTopbarsScreen'));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -165,6 +170,14 @@ function App() {
           </Layout>
         } />
         
+        <Route path="/docs/how-to-use" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <HowToUseScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
         {/* Error routes */}
         <Route path="/errors/404" element={
           <Layout>
@@ -227,6 +240,38 @@ function App() {
           <Layout>
             <Suspense fallback={<PageLoader />}>
               <SpacersScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/cover" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <CoverScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/fonts" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <FontsScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/illustrations" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <IllustrationsScreen />
+            </Suspense>
+          </Layout>
+        } />
+        
+        <Route path="/sidebars-topbars" element={
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <SidebarsTopbarsScreen />
             </Suspense>
           </Layout>
         } />
